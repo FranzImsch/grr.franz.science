@@ -1,103 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Le nombre d'or</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>Le Nombre d'Or</title>
 </head>
 
 <body class="gr-column">
     <div class="gr-long gr-row">
         <div class="gr-short gr-column red">
             <label for="short">Short</label><br>
-            <input type="number" id="short">
+            <input type="number" onfocus="this.value=''" id="short">
         </div>
         <div class="gr-long gr-column blue">
             <label for="long">Long</label><br>
-            <input type="number" id="long">
+            <input type="number" onfocus="this.value=''" id="long">
         </div>
     </div>
     <div class="gr-short gr-column green">
         <label for="sum">Short + Long</label><br>
-        <input type="number" id="sum">
+        <input type="number" onfocus="this.value=''" id="sum">
     </div>
     <div id="precision-div">
         <label for="precision">Nachkommastellen:</label><br>
         <input type="number" id="precision" min="0" max="18" step="1">
     </div>
-
-    <style>
-        body {
-            font-size: 16px;
-            font-family: sans-serif;
-            color: white;
-            margin: 0;
-            height: 100vh;
-            font-size: 18px;
-        }
-
-        input {
-            background-color: transparent;
-            border: none;
-            text-align: center;
-            color: white;
-            font-size: 2rem;
-        }
-
-        .red {
-            background: red;
-        }
-
-        .green {
-            background: green;
-        }
-
-        .blue {
-            background: blue;
-        }
-
-        .gr-column,
-        .gr-row {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .gr-short,
-        .gr-long {
-            flex: 1;
-            align-self: stretch;
-        }
-
-        @media screen and (min-width: 900px) {
-            input{
-                font-size: 3rem;
-            }
-            .gr-row {
-                flex-direction: row;
-            }
-
-            .gr-long {
-                flex: 1.61803399;
-            }
-        }
-
-        #precision-div {
-            position: absolute;
-            bottom: 0.5rem;
-            right: 0.5rem;
-            display: flex;
-            flex-direction: row;
-        }
-
-        #precision-div input {
-            font-size: 1rem;
-            width: 2.5rem;
-        }
-    </style>
 
     <script>
 
