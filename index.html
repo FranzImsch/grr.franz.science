@@ -4,21 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La nombre d'or</title>
+    <title>Le nombre d'or</title>
 </head>
 
-<body>
-    <div id="ratio-div">
-        <div id="short-div">
+<body class="gr-column">
+    <div class="gr-long gr-row">
+        <div class="gr-short gr-column red">
             <label for="short">Short</label><br>
             <input type="number" id="short">
         </div>
-        <div id="long-div">
+        <div class="gr-long gr-column blue">
             <label for="long">Long</label><br>
             <input type="number" id="long">
         </div>
     </div>
-    <div id="sum-div">
+    <div class="gr-short gr-column green">
         <label for="sum">Short + Long</label><br>
         <input type="number" id="sum">
     </div>
@@ -35,10 +35,6 @@
             margin: 0;
             height: 100vh;
             font-size: 18px;
-            justify-content: center;
-            align-items: center;
-            display: flex;
-            flex-direction: column;
         }
 
         input {
@@ -46,49 +42,47 @@
             border: none;
             text-align: center;
             color: white;
-            font-size: 3rem;
+            font-size: 2rem;
         }
 
-        #ratio-div {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
+        .red {
+            background: red;
+        }
+
+        .green {
+            background: green;
+        }
+
+        .blue {
+            background: blue;
+        }
+
+        .gr-column,
+        .gr-row {
             width: 100%;
-        }
-
-        #short-div {
-            flex: 1;
-            background-color: red;
-        }
-
-        #long-div {
-            flex: 1;
-            background-color: blue;
-        }
-
-        #sum-div {
-            flex: 0.5;
-            background-color: green;
-            width: 100%
-        }
-
-        @media screen and (min-width: 1200px) {
-            #ratio-div {
-                flex-direction: row;
-            }
-
-            #long-div, #sum-div {
-                flex: 1.61803399;
-            }
-        }
-
-        #short-div,
-        #long-div,
-        #sum-div {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+        }
+
+        .gr-short,
+        .gr-long {
+            flex: 1;
+            align-self: stretch;
+        }
+
+        @media screen and (min-width: 900px) {
+            input{
+                font-size: 3rem;
+            }
+            .gr-row {
+                flex-direction: row;
+            }
+
+            .gr-long {
+                flex: 1.61803399;
+            }
         }
 
         #precision-div {
