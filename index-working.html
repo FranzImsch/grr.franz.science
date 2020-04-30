@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles-working.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>Le Nombre d'Or</title>
+</head>
+
+<body class="gr-column">
+    <div class="gr-long gr-column blue">
+
+    <div class="gr-long gr-row">
+        <div class="gr-short gr-column red">
+            <label for="short">Short</label><br>
+            <input type="number" onfocus="this.value=''" id="short">
+        </div>
+        <div class="gr-long gr-column blue">
+            <label for="long">Long</label><br>
+            <input type="number" onfocus="this.value=''" id="long">
+        </div>
+    </div>
+    <div class="gr-short gr-column green">
+        <label for="sum">Short + Long</label><br>
+        <input type="number" onfocus="this.value=''" id="sum">
+    </div>
+    <div id="precision-div">
+        <label for="precision">Nachkommastellen:</label><br>
+        <input type="number" id="precision" min="0" max="18" step="1">
+    </div>
+</div>
+
+    <script>
+        const ratio =
+            (1 + Math.sqrt(5)) / 2;
+        const shortRatio = 1 / ratio;
+        window.addEventListener('load', function (_) {
+            const shortEl = document.getElementById('short');
+            const longEl = document.getElementById('long');
+            const sumEl = document.getElementById('sum');
+            const precisionEl = document.getElementById('precision');
+
+            let sum, short, long, precision = 3;
+            precisionEl.value = precision;
+            calcSum({ target: { value: 10 } });
+            update();
+
+            function update(t) {
+                switch (t) {
+                    case 'short':
+                        sumEl.value = sum.toFixed(precision);
+                        longEl.value = long.toFixed(precision);
+                        break;
+                    case 'long':
+                        sumEl.value = sum.toFixed(precision);
+                        shortEl.value = short.toFixed(precision);
+                        break;
+                    case 'sum':
+                        shortEl.value = short.toFixed(precision);
+                        longEl.value = long.toFixed(precision);
+                        break;
+                    default:
+                        sumEl.value = sum.toFixed(precision);
+                        shortEl.value = short.toFixed(precision);
+                        longEl.value = long.toFixed(precision);
+
+                }
+            }
+            function calcSum(e) {
+                sum = Number(e.target.value);
+                short = sum * (shortRatio / ratio);
+                long = sum - short;
+                update('sum');
+            }
+            function calcShort(e) {
+                short = Number(e.target.value);
+                long = short * ratio;
+                sum = short + long;
+                update('short');
+            }
+            function calcLong(e) {
+                long = Number(e.target.value);
+                short = long * shortRatio;
+                sum = short + long;
+                update('long');
+            }
+            function calcPrecision(e) {
+                precision = parseInt(e.target.value);
+                update();
+            }
+            function onEnd() {
+                update();
+            }
+
+            shortEl.addEventListener('input', calcShort);
+            longEl.addEventListener('input', calcLong);
+            sumEl.addEventListener('input', calcSum);
+            shortEl.addEventListener('change', onEnd);
+            longEl.addEventListener('change', onEnd);
+            sumEl.addEventListener('change', onEnd);
+            precisionEl.addEventListener('input', calcPrecision);
+        });
+    </script>
+</body>
+
+</html>

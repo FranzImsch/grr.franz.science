@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="styles.css">
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -19,79 +17,338 @@
     <title>Le Nombre d'Or</title>
 </head>
 
-<body class="gr-column">
-    <div class="gr-long gr-row">
-        <div class="gr-short gr-column red">
-            <label for="short">Short</label><br>
-            <input type="number" onfocus="this.value=''" id="short">
+<body>
+    <div class="wrap">
+
+        <!-------------------------- INPUT AREA -------------------------->
+        <div class="header"><p class="nopad">Input <i>(n = 0)</i></p></div>
+        <div class="input-row" id="m1">
+            <div class="inputbox">
+                <label for="short">Minor:</label>
+                <input type="number" onfocus="makeclear('short'); this.select()" id="short" inputmode="numeric" pattern="[0-9]*">
+            </div>
+
+            <div class="inputbox">
+                <label for="long">Major:</label>
+                <input type="number" onfocus="makeclear('long'); this.select()" id="long" inputmode="numeric" pattern="[0-9]*">
+            </div>
+
+            <div class="inputbox">
+                <label for="sum">Zusammen:</label>
+                <input type="number" onfocus="makeclear('sum'); this.select()" id="sum" value="15.00000" inputmode="numeric" pattern="[0-9]*">
+            </div>
         </div>
-        <div class="gr-long gr-column blue">
-            <label for="long">Long</label><br>
-            <input type="number" onfocus="this.value=''" id="long">
+
+        <!-------------------------- GOLDEN RATIO -------------------------->
+        <div class="header"><p class="nopad">Goldener Schnitt <i>(n = 1)</i></p></div>
+        <div class="input-row" id="m2">
+            <div class="inputbox">
+                <label class="normallyhidden" for="gold-short">Minor:</label>
+                <input type="number" onfocus="this.select()" id="gold-short" readonly>
+            </div>
+
+            <div class="inputbox">
+                <label class="normallyhidden" for="gold-long">Major:</label>
+                <input type="number" onfocus="this.select()" id="gold-long" readonly>
+            </div>
+
+            <div class="inputbox">
+                <label class="normallyhidden" for="gold-sum">Zusammen:</label>
+                <input type="number" onfocus="this.select()" id="gold-sum" readonly>
+            </div>
         </div>
+
+        <!-------------------------- SILVER RATIO -------------------------->
+        <div class="header"><p class="nopad">Silberner Schnitt <i>(n = 2)</i></p></div>
+        <div class="input-row" id="m2">
+            <div class="inputbox">
+                <label class="normallyhidden" for="silver-short">Minor:</label>
+                <input type="number" onfocus="this.select()" id="silver-short" readonly>
+            </div>
+
+            <div class="inputbox">
+                <label class="normallyhidden" for="silver-long">Major:</label>
+                <input type="number" onfocus="this.select()" id="silver-long" readonly>
+            </div>
+
+            <div class="inputbox">
+                <label class="normallyhidden" for="silver-sum">Zusammen:</label>
+                <input type="number" onfocus="this.select()" id="silver-sum" readonly>
+            </div>
+        </div>
+
+        <!-------------------------- BRONZE RATIO -------------------------->
+        <div class="header"><p class="nopad">Bronzener Schnitt <i>(n = 3)</i></p></div>
+        <div class="input-row" id="m2">
+            <div class="inputbox">
+                <label class="normallyhidden" for="bronze-short">Minor:</label>
+                <input type="number" onfocus="this.select()" id="bronze-short" readonly>
+            </div>
+
+            <div class="inputbox">
+                <label class="normallyhidden" for="bronze-long">Major:</label>
+                <input type="number" onfocus="this.select()" id="bronze-long" readonly>
+            </div>
+
+            <div class="inputbox">
+                <label class="normallyhidden" for="bronze-sum">Zusammen:</label>
+                <input type="number" onfocus="this.select()" id="bronze-sum" readonly>
+            </div>
+        </div>
+
+                <!-------------------------- NICKEL RATIO -------------------------->
+                <div class="header"><p class="nopad">"Nickelner" Schnitt <i>(n = 4)</i></p></div>
+                <div class="input-row" id="m2">
+                    <div class="inputbox">
+                        <label class="normallyhidden" for="nickel-short">Minor:</label>
+                        <input type="number" onfocus="this.select()" id="nickel-short" readonly>
+                    </div>
+        
+                    <div class="inputbox">
+                        <label class="normallyhidden" for="nickel-long">Major:</label>
+                        <input type="number" onfocus="this.select()" id="nickel-long" readonly>
+                    </div>
+        
+                    <div class="inputbox">
+                        <label class="normallyhidden" for="nickel-sum">Zusammen:</label>
+                        <input type="number" onfocus="this.select()" id="nickel-sum" readonly>
+                    </div>
+                </div>
+
+
+                <!-------------------------- ALUMINIMUM RATIO -------------------------->
+                <div class="header"><p class="nopad">"Aluminischer" Schnitt <i>(n = 5)</i></p></div>
+                <div class="input-row" id="m2">
+                    <div class="inputbox">
+                        <label class="normallyhidden" for="alu-short">Minor:</label>
+                        <input type="number" onfocus="this.select()" id="alu-short" readonly>
+                    </div>
+        
+                    <div class="inputbox">
+                        <label class="normallyhidden" for="alu-long">Major:</label>
+                        <input type="number" onfocus="this.select()" id="alu-long" readonly>
+                    </div>
+        
+                    <div class="inputbox">
+                        <label class="normallyhidden" for="alu-sum">Zusammen:</label>
+                        <input type="number" onfocus="this.select()" id="alu-sum" readonly>
+                    </div>
+                </div>
+
+                <!-------------------------- CUSTOM RATIO -------------------------->
+                <div class="header"><label class="nopad" for="custom"><i>n = </i></label>
+                    <input class="custom" id="customInputField" type="number" onfocus="this.select()" min="0" step="1" value="6" inputmode="numeric" pattern="[0-9]*"></div>
+                <div class="input-row" id="m2">
+                    <div class="inputbox">
+                        <label class="normallyhidden" for="custom-short">Minor:</label>
+                        <input type="number" onfocus="this.select()" id="custom-short" readonly>
+                    </div>
+        
+                    <div class="inputbox">
+                        <label class="normallyhidden" for="custom-long">Major:</label>
+                        <input type="number" onfocus="this.select()" id="custom-long" readonly>
+                    </div>
+        
+                    <div class="inputbox">
+                        <label class="normallyhidden" for="custom-sum">Zusammen:</label>
+                        <input type="number" onfocus="this.select()" id="custom-sum" readonly>
+                    </div>
+                </div>
+
+
+        <label for="precision">Nachkommastellen:</label>
+                    <input type="number" id="precision" min="0" max="18" step="1" inputmode="numeric" pattern="[0-9]*">
     </div>
-    <div class="gr-short gr-column green">
-        <label for="sum">Short + Long</label><br>
-        <input type="number" onfocus="this.value=''" id="sum">
-    </div>
-    <div id="precision-div">
-        <label for="precision">Nachkommastellen:</label><br>
-        <input type="number" id="precision" min="0" max="18" step="1">
-    </div>
+
+
+
+
 
     <script>
+        function makeclear(which) {
+            switch(which) {
+                case 'short':
+                document.getElementById('long').value = '';
+                document.getElementById('sum').value = '';
+                break;
+                case 'long':
+                document.getElementById('short').value = '';
+                document.getElementById('sum').value = '';
+                break;
+                case 'sum':
+                document.getElementById('short').value = '';
+                document.getElementById('long').value = '';
+                break;
+                
+        }
+    }
 
-        const ratio =
-            (1 + Math.sqrt(5)) / 2;
-        const shortRatio = 1 / ratio;
+        const gldratio = (1 + Math.sqrt(5)) / 2;
+        const gldshortRatio = 1 / gldratio;
+
+        const svlrratio = (2 + Math.sqrt(8))/2;
+        const svlrshortRatio = 1 / svlrratio;
+
+        const brnzratio = (3 + Math.sqrt(13)) / 2;
+        const brnzshortRatio = 1 / brnzratio;
+
+        const nickelratio = (4 + Math.sqrt(20)) / 2;
+        const nickelshortRatio = 1 / nickelratio;
+
+        const aluratio = (5 + Math.sqrt(29)) / 2;
+        const alushortRatio = 1 / aluratio;
+
         window.addEventListener('load', function (_) {
-            const shortEl = document.getElementById('short');
-            const longEl = document.getElementById('long');
-            const sumEl = document.getElementById('sum');
             const precisionEl = document.getElementById('precision');
 
-            let sum, short, long, precision = 3;
+            const shortInputEl = document.getElementById('short');
+            const longInputEl = document.getElementById('long');
+            const sumInputEl = document.getElementById('sum');
+
+            const shortGoldEl = document.getElementById('gold-short');
+            const longGoldEl = document.getElementById('gold-long');
+            const sumGoldEl = document.getElementById('gold-sum');
+            
+            const shortSilverEl = document.getElementById('silver-short');
+            const longSilverEl = document.getElementById('silver-long');
+            const sumSilverEl = document.getElementById('silver-sum');
+
+            const shortBronzeEl = document.getElementById('bronze-short');
+            const longBronzeEl = document.getElementById('bronze-long');
+            const sumBronzeEl = document.getElementById('bronze-sum');
+
+            const shortNickelEl = document.getElementById('nickel-short');
+            const longNickelEl = document.getElementById('nickel-long');
+            const sumNickelEl = document.getElementById('nickel-sum');
+
+            const shortAluEl = document.getElementById('alu-short');
+            const longAluEl = document.getElementById('alu-long');
+            const sumAluEl = document.getElementById('alu-sum');
+
+            const shortCustomEl = document.getElementById('custom-short');
+            const longCustomEl = document.getElementById('custom-long');
+            const sumCustomEl = document.getElementById('custom-sum');
+
+            const CustomEl = document.getElementById('customInputField');
+
+            let gldsum, gldshort, gldlong, svlrsum, svlrshort, svlrlong, brnzsum, brnzshort, brnzlong, 
+            nickelsum, nickelshort, nickellong, alusum, alushort, alulong, customsum, customshort, customlong, 
+            customRatio, precision = 5;
+
             precisionEl.value = precision;
-            calcSum({ target: { value: 10 } });
+
+
+            calcSum({ target: { value: 15 } });
             update();
 
-            function update(t) {
-                switch (t) {
-                    case 'short':
-                        sumEl.value = sum.toFixed(precision);
-                        longEl.value = long.toFixed(precision);
-                        break;
-                    case 'long':
-                        sumEl.value = sum.toFixed(precision);
-                        shortEl.value = short.toFixed(precision);
-                        break;
-                    case 'sum':
-                        shortEl.value = short.toFixed(precision);
-                        longEl.value = long.toFixed(precision);
-                        break;
-                    default:
-                        sumEl.value = sum.toFixed(precision);
-                        shortEl.value = short.toFixed(precision);
-                        longEl.value = long.toFixed(precision);
 
-                }
+            function update(t) {
+                        sumGoldEl.value = gldsum.toFixed(precision);
+                        shortGoldEl.value = gldshort.toFixed(precision);
+                        longGoldEl.value = gldlong.toFixed(precision);
+
+                        shortSilverEl.value = svlrshort.toFixed(precision);
+                        longSilverEl.value = svlrlong.toFixed(precision);
+                        sumSilverEl.value = svlrsum.toFixed(precision);
+
+                        sumBronzeEl.value = brnzsum.toFixed(precision);
+                        longBronzeEl.value = brnzlong.toFixed(precision);
+                        shortBronzeEl.value = brnzshort.toFixed(precision);
+
+                        sumNickelEl.value = nickelsum.toFixed(precision);
+                        longNickelEl.value = nickellong.toFixed(precision);
+                        shortNickelEl.value = nickelshort.toFixed(precision);
+
+                        sumAluEl.value = alusum.toFixed(precision);
+                        longAluEl.value = alulong.toFixed(precision);
+                        shortAluEl.value = alushort.toFixed(precision);
+
+                        sumCustomEl.value = customsum.toFixed(precision);
+                        longCustomEl.value = customlong.toFixed(precision);
+                        shortCustomEl.value = customshort.toFixed(precision);
             }
             function calcSum(e) {
-                sum = Number(e.target.value);
-                short = sum * (shortRatio / ratio);
-                long = sum - short;
+                gldsum = Number(e.target.value);
+                gldlong = gldsum * (gldratio/(gldratio + 1));
+                gldshort = gldsum - gldlong;
+
+                svlrsum = gldsum;
+                svlrlong = svlrsum * (svlrratio/(svlrratio + 1));
+                svlrshort = svlrsum - svlrlong;
+
+                brnzsum = gldsum;
+                brnzlong = brnzsum * (brnzratio/(brnzratio + 1));
+                brnzshort = brnzsum - brnzlong;
+
+                nickelsum = gldsum;
+                nickellong = nickelsum * (nickelratio/(nickelratio + 1));
+                nickelshort = nickelsum - nickellong;
+
+                alusum = gldsum;
+                alulong = alusum * (aluratio/(aluratio + 1));
+                alushort = alusum - alulong;
+
+                customRatio = ((Number(CustomEl.value) + Math.sqrt(4 + Math.pow(Number(CustomEl.value), 2))) / 2);
+
+                customsum = gldsum;
+                customlong = customsum * (customRatio/(customRatio + 1));
+                customshort = customsum - customlong;
                 update('sum');
             }
             function calcShort(e) {
-                short = Number(e.target.value);
-                long = short * ratio;
-                sum = short + long;
+                gldshort = Number(e.target.value);
+                gldlong = gldshort * gldratio;
+                gldsum = gldshort + gldlong;
+
+                svlrshort = gldshort;
+                svlrlong = svlrshort * svlrratio;
+                svlrsum = svlrshort + svlrlong;
+
+                brnzshort = gldshort;
+                brnzlong = brnzshort * brnzratio;
+                brnzsum = brnzshort + brnzlong;
+
+                nickelshort = gldshort;
+                nickellong = nickelshort * nickelratio;
+                nickelsum = nickelshort + nickellong;
+                
+                alushort = gldshort;
+                alulong = alushort * aluratio;
+                alusum = alushort + alulong;
+
+                customRatio = ((Number(CustomEl.value) + Math.sqrt(4 + Math.pow(Number(CustomEl.value), 2))) / 2);
+
+                customshort = gldshort;
+                customlong = customshort * (customRatio);
+                customsum = customshort + customlong;
                 update('short');
             }
             function calcLong(e) {
-                long = Number(e.target.value);
-                short = long * shortRatio;
-                sum = short + long;
+                gldlong = Number(e.target.value);
+                gldshort = gldlong * gldshortRatio;
+                gldsum = gldshort + gldlong;
+
+                svlrlong = gldlong;
+                svlrshort = svlrlong * svlrshortRatio;
+                svlrsum = svlrshort + svlrlong;
+
+                brnzlong = gldlong;
+                brnzshort = brnzlong * brnzshortRatio;
+                brnzsum = brnzshort + brnzlong;
+
+                nickellong = gldlong;
+                nickelshort = nickellong * nickelshortRatio;
+                nickelsum = nickelshort + nickellong;
+
+                alulong = gldlong;
+                alushort = alulong * alushortRatio;
+                alusum = alushort + alulong;
+
+                customRatio = ((Number(CustomEl.value) + Math.sqrt(4 + Math.pow(Number(CustomEl.value), 2))) / 2);
+
+                customlong = Number(e.target.value);
+                customshort = customlong * (1/customRatio);
+                customsum = customshort + customlong;
                 update('long');
             }
             function calcPrecision(e) {
@@ -101,16 +358,28 @@
             function onEnd() {
                 update();
             }
+            function reNew() {
+                if (document.getElementById('short').value != "") {
+                    calcShort({ target: { value: shortInputEl.value } });
+                }
+                else if (document.getElementById('long').value != "") {
+                    calcLong({ target: { value: longInputEl.value } });
+                }
+                else if (document.getElementById('sum').value != "") {
+                    calcSum({ target: { value: sumInputEl.value } });
+                }
+            }
 
-            shortEl.addEventListener('input', calcShort);
-            longEl.addEventListener('input', calcLong);
-            sumEl.addEventListener('input', calcSum);
-            shortEl.addEventListener('change', onEnd);
-            longEl.addEventListener('change', onEnd);
-            sumEl.addEventListener('change', onEnd);
+            shortInputEl.addEventListener('input', calcShort);
+            longInputEl.addEventListener('input', calcLong);
+            sumInputEl.addEventListener('input', calcSum);
+            shortInputEl.addEventListener('change', onEnd);
+            longInputEl.addEventListener('change', onEnd);
+            sumInputEl.addEventListener('change', onEnd);
+            CustomEl.addEventListener('input', reNew);
             precisionEl.addEventListener('input', calcPrecision);
+            
         });
-
     </script>
 </body>
 
