@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="styles.css">
+
+    <meta name="description" content="Online-Rechner für metallische Schnitten und die plastischen Zahl mit Erläuterungen und Herleitung.">
+    <meta name="keywords" content="Goldener Schnitt, Silberner Schnitt, Bronzener Schnitt, Nickel, metallic mean, Metallischer Schnitt, Metallisch, harmonisch, Proportionen, Architektur, Onlinerechner, Rechner">
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -15,178 +18,371 @@
     <meta name="theme-color" content="#ffffff">
 
     <title>Le Nombre d'Or</title>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        MathJax = {
+            chtml: {
+                scale: 1,                      // global scaling factor for all expressions
+                minScale: .8,                  // smallest scaling factor to use
+                matchFontHeight: true,         // true to match ex-height of surrounding font
+                mtextInheritFont: false,       // true to make mtext elements use surrounding font
+                merrorInheritFont: true,       // true to make merror text use surrounding font
+                mathmlSpacing: false,          // true for MathML spacing rules, false for TeX rules
+                skipAttributes: {},            // RFDa and other attributes NOT to copy to the output
+                exFactor: .5,                  // default size of ex in em units
+                displayAlign: 'center',        // default for indentalign when set to 'auto'
+                displayIndent: '0'             // default for indentshift when set to 'auto'
+            }
+        };
+    </script>
+
+
 </head>
 
 <body>
     <div class="wrap">
 
-        <!-------------------------- INPUT AREA -------------------------->
-        <div class="header"><p class="nopad">Input <i>(n = 0)</i></p></div>
-        <div class="input-row" id="m1">
-            <div class="inputbox">
-                <label for="short">Minor:</label>
-                <input type="number" onfocus="makeclear('short'); this.select()" id="short" inputmode="numeric" pattern="[0-9]*">
-            </div>
-
-            <div class="inputbox">
-                <label for="long">Major:</label>
-                <input type="number" onfocus="makeclear('long'); this.select()" id="long" inputmode="numeric" pattern="[0-9]*">
-            </div>
-
-            <div class="inputbox">
-                <label for="sum">Zusammen:</label>
-                <input type="number" onfocus="makeclear('sum'); this.select()" id="sum" value="15.00000" inputmode="numeric" pattern="[0-9]*">
-            </div>
+        <div class="logo"></div>
+        <div class="title">
+            <p class="nopad">Proportionsrechner</p>
+        </div>
+        <div class="contents">
+            <a href="#calc">Rechner</a> <a href="#math">Mathematik</a> <a href="#caliper">Proportionszirkel</a>
         </div>
 
-        <!-------------------------- GOLDEN RATIO -------------------------->
-        <div class="header"><p class="nopad">Goldener Schnitt <i>(n = 1)</i></p></div>
-        <div class="input-row" id="m2">
-            <div class="inputbox">
-                <label class="normallyhidden" for="gold-short">Minor:</label>
-                <input type="number" onfocus="this.select()" id="gold-short" readonly>
-            </div>
+        <div class="calculator" id="calc">
 
-            <div class="inputbox">
-                <label class="normallyhidden" for="gold-long">Major:</label>
-                <input type="number" onfocus="this.select()" id="gold-long" readonly>
+            <!-------------------------- INPUT AREA -------------------------->
+            <div class="inputheader">
+                <p class="nopad">Input <i>(n = 0)</i></p>
             </div>
-
-            <div class="inputbox">
-                <label class="normallyhidden" for="gold-sum">Zusammen:</label>
-                <input type="number" onfocus="this.select()" id="gold-sum" readonly>
-            </div>
-        </div>
-
-        <!-------------------------- SILVER RATIO -------------------------->
-        <div class="header"><p class="nopad">Silberner Schnitt <i>(n = 2)</i></p></div>
-        <div class="input-row" id="m2">
-            <div class="inputbox">
-                <label class="normallyhidden" for="silver-short">Minor:</label>
-                <input type="number" onfocus="this.select()" id="silver-short" readonly>
-            </div>
-
-            <div class="inputbox">
-                <label class="normallyhidden" for="silver-long">Major:</label>
-                <input type="number" onfocus="this.select()" id="silver-long" readonly>
-            </div>
-
-            <div class="inputbox">
-                <label class="normallyhidden" for="silver-sum">Zusammen:</label>
-                <input type="number" onfocus="this.select()" id="silver-sum" readonly>
-            </div>
-        </div>
-
-        <!-------------------------- BRONZE RATIO -------------------------->
-        <div class="header"><p class="nopad">Bronzener Schnitt <i>(n = 3)</i></p></div>
-        <div class="input-row" id="m2">
-            <div class="inputbox">
-                <label class="normallyhidden" for="bronze-short">Minor:</label>
-                <input type="number" onfocus="this.select()" id="bronze-short" readonly>
-            </div>
-
-            <div class="inputbox">
-                <label class="normallyhidden" for="bronze-long">Major:</label>
-                <input type="number" onfocus="this.select()" id="bronze-long" readonly>
-            </div>
-
-            <div class="inputbox">
-                <label class="normallyhidden" for="bronze-sum">Zusammen:</label>
-                <input type="number" onfocus="this.select()" id="bronze-sum" readonly>
-            </div>
-        </div>
-
-                <!-------------------------- NICKEL RATIO -------------------------->
-                <div class="header"><p class="nopad">"Nickelner" Schnitt <i>(n = 4)</i></p></div>
-                <div class="input-row" id="m2">
-                    <div class="inputbox">
-                        <label class="normallyhidden" for="nickel-short">Minor:</label>
-                        <input type="number" onfocus="this.select()" id="nickel-short" readonly>
-                    </div>
-        
-                    <div class="inputbox">
-                        <label class="normallyhidden" for="nickel-long">Major:</label>
-                        <input type="number" onfocus="this.select()" id="nickel-long" readonly>
-                    </div>
-        
-                    <div class="inputbox">
-                        <label class="normallyhidden" for="nickel-sum">Zusammen:</label>
-                        <input type="number" onfocus="this.select()" id="nickel-sum" readonly>
-                    </div>
+            <div class="input-row">
+                <div class="inputbox">
+                    <label for="short">Minor:</label>
+                    <input type="number" onfocus="makeclear('short'); this.select()" id="short" inputmode="numeric"
+                        pattern="[0-9]*">
                 </div>
 
-
-                <!-------------------------- ALUMINIMUM RATIO -------------------------->
-                <div class="header"><p class="nopad">"Aluminischer" Schnitt <i>(n = 5)</i></p></div>
-                <div class="input-row" id="m2">
-                    <div class="inputbox">
-                        <label class="normallyhidden" for="alu-short">Minor:</label>
-                        <input type="number" onfocus="this.select()" id="alu-short" readonly>
-                    </div>
-        
-                    <div class="inputbox">
-                        <label class="normallyhidden" for="alu-long">Major:</label>
-                        <input type="number" onfocus="this.select()" id="alu-long" readonly>
-                    </div>
-        
-                    <div class="inputbox">
-                        <label class="normallyhidden" for="alu-sum">Zusammen:</label>
-                        <input type="number" onfocus="this.select()" id="alu-sum" readonly>
-                    </div>
+                <div class="inputbox">
+                    <label for="long">Major:</label>
+                    <input type="number" onfocus="makeclear('long'); this.select()" id="long" inputmode="numeric"
+                        pattern="[0-9]*">
                 </div>
 
-                <!-------------------------- CUSTOM RATIO -------------------------->
-                <div class="header"><label class="nopad" for="custom"><i>n = </i></label>
-                    <input class="custom" id="customInputField" type="number" onfocus="this.select()" min="0" step="1" value="6" inputmode="numeric" pattern="[0-9]*"></div>
-                <div class="input-row" id="m2">
-                    <div class="inputbox">
-                        <label class="normallyhidden" for="custom-short">Minor:</label>
-                        <input type="number" onfocus="this.select()" id="custom-short" readonly>
-                    </div>
-        
-                    <div class="inputbox">
-                        <label class="normallyhidden" for="custom-long">Major:</label>
-                        <input type="number" onfocus="this.select()" id="custom-long" readonly>
-                    </div>
-        
-                    <div class="inputbox">
-                        <label class="normallyhidden" for="custom-sum">Zusammen:</label>
-                        <input type="number" onfocus="this.select()" id="custom-sum" readonly>
-                    </div>
+                <div class="inputbox">
+                    <label for="sum">Zusammen:</label>
+                    <input type="number" onfocus="makeclear('sum'); this.select()" id="sum" value="15.000"
+                        inputmode="numeric" pattern="[0-9]*">
+                </div>
+            </div>
+
+            <!-------------------------- GOLDEN RATIO -------------------------->
+            <div class="header">
+                <p class="nopad">Goldener Schnitt <i>(n = 1)</i></p>
+            </div>
+            <div class="input-row">
+                <div class="inputbox">
+                    <label class="normallyhidden" for="gold-short">Minor:</label>
+                    <input type="number" onfocus="this.select()" id="gold-short" readonly>
                 </div>
 
+                <div class="inputbox">
+                    <label class="normallyhidden" for="gold-long">Major:</label>
+                    <input type="number" onfocus="this.select()" id="gold-long" readonly>
+                </div>
 
-        <label for="precision">Nachkommastellen:</label>
-                    <input type="number" id="precision" min="0" max="18" step="1" inputmode="numeric" pattern="[0-9]*">
+                <div class="inputbox">
+                    <label class="normallyhidden" for="gold-sum">Zusammen:</label>
+                    <input type="number" onfocus="this.select()" id="gold-sum" readonly>
+                </div>
+            </div>
+
+            <!-------------------------- SILVER RATIO -------------------------->
+            <div class="header">
+                <p class="nopad">Silberner Schnitt <i>(n = 2)</i></p>
+            </div>
+            <div class="input-row">
+                <div class="inputbox">
+                    <label class="normallyhidden" for="silver-short">Minor:</label>
+                    <input type="number" onfocus="this.select()" id="silver-short" readonly>
+                </div>
+
+                <div class="inputbox">
+                    <label class="normallyhidden" for="silver-long">Major:</label>
+                    <input type="number" onfocus="this.select()" id="silver-long" readonly>
+                </div>
+
+                <div class="inputbox">
+                    <label class="normallyhidden" for="silver-sum">Zusammen:</label>
+                    <input type="number" onfocus="this.select()" id="silver-sum" readonly>
+                </div>
+            </div>
+
+            <!-------------------------- BRONZE RATIO -------------------------->
+            <div class="header">
+                <p class="nopad">Bronzener Schnitt <i>(n = 3)</i></p>
+            </div>
+            <div class="input-row">
+                <div class="inputbox">
+                    <label class="normallyhidden" for="bronze-short">Minor:</label>
+                    <input type="number" onfocus="this.select()" id="bronze-short" readonly>
+                </div>
+
+                <div class="inputbox">
+                    <label class="normallyhidden" for="bronze-long">Major:</label>
+                    <input type="number" onfocus="this.select()" id="bronze-long" readonly>
+                </div>
+
+                <div class="inputbox">
+                    <label class="normallyhidden" for="bronze-sum">Zusammen:</label>
+                    <input type="number" onfocus="this.select()" id="bronze-sum" readonly>
+                </div>
+            </div>
+
+            <!-------------------------- NICKEL RATIO -------------------------->
+            <div class="header">
+                <p class="nopad">Nickelschnitt <i>(n = 4)</i></p>
+            </div>
+            <div class="input-row">
+                <div class="inputbox">
+                    <label class="normallyhidden" for="nickel-short">Minor:</label>
+                    <input type="number" onfocus="this.select()" id="nickel-short" readonly>
+                </div>
+
+                <div class="inputbox">
+                    <label class="normallyhidden" for="nickel-long">Major:</label>
+                    <input type="number" onfocus="this.select()" id="nickel-long" readonly>
+                </div>
+
+                <div class="inputbox">
+                    <label class="normallyhidden" for="nickel-sum">Zusammen:</label>
+                    <input type="number" onfocus="this.select()" id="nickel-sum" readonly>
+                </div>
+            </div>
+
+
+            <!-------------------------- ALUMINIMUM RATIO -------------------------->
+            <div class="header">
+                <p class="nopad">Aluminiumschnitt <i>(n = 5)</i></p>
+            </div>
+            <div class="input-row">
+                <div class="inputbox">
+                    <label class="normallyhidden" for="alu-short">Minor:</label>
+                    <input type="number" onfocus="this.select()" id="alu-short" readonly>
+                </div>
+
+                <div class="inputbox">
+                    <label class="normallyhidden" for="alu-long">Major:</label>
+                    <input type="number" onfocus="this.select()" id="alu-long" readonly>
+                </div>
+
+                <div class="inputbox">
+                    <label class="normallyhidden" for="alu-sum">Zusammen:</label>
+                    <input type="number" onfocus="this.select()" id="alu-sum" readonly>
+                </div>
+            </div>
+
+            <!-------------------------- CUSTOM RATIO -------------------------->
+            <div class="header"><label class="nopad" for="custom"><i>n = </i></label>
+                <input class="custom" id="customInputField" type="number" onfocus="this.select()" min="6" step="1"
+                    value="6" inputmode="numeric" pattern="[0-9]*"></div>
+            <div class="input-row">
+                <div class="inputbox">
+                    <label class="normallyhidden" for="custom-short">Minor:</label>
+                    <input type="number" onfocus="this.select()" id="custom-short" readonly>
+                </div>
+
+                <div class="inputbox">
+                    <label class="normallyhidden" for="custom-long">Major:</label>
+                    <input type="number" onfocus="this.select()" id="custom-long" readonly>
+                </div>
+
+                <div class="inputbox">
+                    <label class="normallyhidden" for="custom-sum">Zusammen:</label>
+                    <input type="number" onfocus="this.select()" id="custom-sum" readonly>
+                </div>
+            </div>
+
+            <!-------------------------- PLASTIC NUMBER -------------------------->
+            <div class="header">
+                <p class="nopad">Plastische Zahl</p>
+            </div>
+            <div class="input-row">
+                <div class="inputbox">
+                    <label class="normallyhidden" for="plastic-short">Minor:</label>
+                    <input type="number" onfocus="this.select()" id="plastic-short" readonly>
+                </div>
+
+                <div class="inputbox">
+                    <label class="normallyhidden" for="plastic-long">Major:</label>
+                    <input type="number" onfocus="this.select()" id="plastic-long" readonly>
+                </div>
+
+                <div class="inputbox">
+                    <label class="normallyhidden" for="plastic-sum">Zusammen:</label>
+                    <input type="number" onfocus="this.select()" id="plastic-sum" readonly>
+                </div>
+            </div>
+
+            <div class="foot-row">
+            <div class="precision">
+                <label for="precision">Nachkommastellen:</label>
+                <input style="align-self: center;" type="number" id="precision" min="0" max="18" step="1" inputmode="numeric" pattern="[0-9]*">
+            </div>
+            <div class="sequence-link">
+                <a style="max-height: fit-content;" href="sequence.html">Zum Zahlenfolgenrechner</a>
+            </div>
+            </div>
+        </div>
+
+        <div class="math" id="math">
+            <p class="title">Mathematischer Hintergrund</p>
+            <p style="margin-bottom: 15px;" class="explanation heading">Metallische Schnitte</p>
+            <p class="explanation">Proportionen sind dann im goldenen Schnitt, wenn der Major \(a\) (längere Seite) zum
+                Minor \(b\) in diesem Verhältnis steht: \( \frac{a}{b}= \frac{a+b}{a}\). Durch Umformung ergibt sich
+                hieraus die Gleichung: \( \frac {a}{b}= \frac {b}{a}+1\) bzw. \(Φ = \frac {1}{Φ} +1\).</p>
+            <p class="explanation">Die Lösungen für diese Gleichungen sind: \( Φ= \frac {1 \pm \sqrt{5}} {2}\) bzw. \(
+                Φ= \frac {1 + \sqrt{5}} {2}\) und \( \overline{Φ}= \frac {1 - \sqrt{5}} {2}\), da \( Φ+ \overline{Φ}=1\)
+                und \( Φ+ \frac {1}{Φ}=1\). Somit ergibt sich zudem:</p>
+            <p class="explanation center">\( \overline { Φ }= - \frac {1} { Φ}\).</p>
+
+            <p class="explanation">Ändert man das Proportionsverhältnis nun so, dass: \( \frac {a} {b} = \frac
+                {2a+b}{a}\), gilt, so erhält man nach demselben Prinzip den silbernen Schnitt mit \( δ_{S} = 1+
+                \sqrt{2}\).</p>
+
+            <p class="explanation">Allgemein gesprochen gibt für alle positiven natürlichen Zahlen \(n\) die
+                quadratische Gleichung: \(x= \frac {1}{x}+n\), analog zur Gleichung des goldenen Schnitts einen Wert,
+                mit dem das Verhältnis zwischen zwei Längen berechnet werden kann.</p>
+
+            <p class="explanation">Diese Zusammenhänge lassen sich auch als Kettenbruch ausdrücken:</p>
+            <p class="explanation center">\( 1+\frac {1} {1+\frac {1} {1+\frac {1} {1+\frac {1} {1+\frac {1} {1+\ddots
+                }}}}} \).</p>
+
+            <p class="explanation">Zusammenfassend kann man diesen Bruch auch darstellen als:</p>
+            <p class="explanation center">\( x= 1+ \frac {1} {x} \).</p>
+
+            <p class="explanation">Oder allgemein gesprochen: </p>
+            <p class="explanation center">\( n+\frac {1} {n+\frac {1} {n+\frac {1} {n+\frac {1} {n+\frac {1} {n+\ddots
+                }}}}} \Rightarrow x=n+ \frac {1}{n} \).</p>
+
+            <p class="explanation">Wie oben gesehen, ergibt sich für \(n=1\) eine Lösung: \(Φ = x \approx 1{,}618\), den
+                goldenen Schnitt. Für \(n=2\) ergibt sich der silberne Schnitt mit \(δ_{S} = x \approx 2{,}414\), usw.
+            </p>
+
+            <p class="explanation">Der goldene Schnitt steht in Verbindung zum <a target="_blank"
+                    href="https://de.wikipedia.org/wiki/Pentagramm#Goldener_Schnitt">Pentagramm</a> bzw. Pentagon. Beim
+                silbernen Schnitt ist das assoziierte Polygon das Oktagon, beim bronzenen Schnitt das Tridekagon, ….
+                Weitere Infos gibt es <a target="_blank" href="https://tellerm.com/math/metal_ngons/">hier
+                    (englisch)</a>.</p>
+
+            <p class="explanation">Weiterhin steht der goldene Schnitt in Verbindung mit der <a target="_blank"
+                    href="https://oeis.org/A000045">Fibonacci-Folge</a>, da der Grenzwert des Verhältnisses von zwei
+                aufeinanderfolgenden Zahlen dieser Folge gegen den Wert Φ geht. Ebenso ist der silberne Schnitt mit der
+                <a target="_blank" href="https://oeis.org/A096650">Pell-Folge</a> verbunden und der bronzene Schnitt mit
+                <a target="_blank" href=" https://oeis.org/A006190">dieser Reihe</a>.</p>
+
+            <p class="explanation center">$$Φ ∶= \lim_{k \rightarrow \infty } \frac{ f_{k+1} }{f_{k}} = \frac{1+
+                \sqrt{5} }{2} \approx 1{,}618…$$$$δ_{S} ∶= \lim_{k \rightarrow \infty } \frac{ P_{k+1} }{P_{k}} = 1+
+                \sqrt{2} \approx 2{,}414…$$$$ \vdots $$</p>
+
+            <p class="explanation">Eine allgemeine Reihe lässt sich somit so bilden:</p>
+            <p class="explanation center">\(S_{k}=S_{(k-1)}*n+S_{(k-2)}\) für \(p ≥ 3\).</p>
+
+            <p class="explanation">Der Zusammenhang zwischen den metallischen Schnitten und der allgemeinen Reihe \(S\)
+                lässt sich auch an dem entsprechenden allgemeinen Kettenbruch zeigen.</p>
+            <p class="explanation">Am Beispiel des goldenen Schnitts:</p>
+            <p class="explanation center">$$1+\frac{1}{1}=\frac {2}{1}$$ $$1+\frac{1}{1+\frac {1}{1}}=\frac
+                {3}{2}$$$$1+\frac{1}{1+\frac {1}{1+\frac {1}{1}}}=\frac {5}{3}$$</p>
+
+            <p class="explanation">Als Lösungen ergeben sich die sukzessiven Verhältnisse der Fibonacci-Folge: \( \frac
+                {2}{1}, \frac {3}{2}, \frac {5}{3},… Φ \). Deshalb gilt (wie oben):</p>
+            <p class="explanation center">$$Φ ∶= \lim_{k \rightarrow \infty } \frac{ f_{k+1} }{f_{k}} = \frac{1+
+                \sqrt{5} }{2} \approx 1{,}618…$$</p>
+
+            <p class="explanation">Analog dazu gilt dies auch für \(n\): \(1, n, n^{2}+1, n(n+1)+n,…\).</p>
+
+            <p class="explanation">Auch wenn die ästhetisch harmonische Wirkung der metallischen Schnitte, insbesondere
+                des goldenen Schnitts, in der Forschung umstritten sind, bieten sie aufgrund der engen Verbindung mit
+                verschiedenen Naturaspekten einen guten Anhaltspunkt für Designer.</p>
+
+            <p class="explanation">Ein weiterer sinnvoller Anhaltspunkt für Designer sind die <b>metallischen
+                    Winkel</b>. Sie lassen sich berechnen, indem man den Vollwinkel des Kreises im jeweiligen Schnitt
+                teilt. So beträgt beispielsweise der goldene Winkel circa 137,5° und seine Ergänzung zum Vollwinkel
+                222,5°.</p>
+
+            <p class="explanation">Außerdem eine sinnvolle Ergänzung für Designer sind die metallischen Zahlenfolgen,
+                mit denen sich kaskadierende Proportionen erstellen lassen. Das Prinzip dieser Zahlenfolgen ist, dass je
+                drei aufeinanderfolgende Glieder einen goldenen Schnitt bilden.</p>
+            <p class="explanation">Das allgemeine Glied einer solchen Zahlenfolge lässt sich so beschreiben:</p>
+            <p class="explanation center">\(a_{z}= Φ^{z}*a_{0}\) für alle \(z \in \mathbb{Z}\).</p>
+
+            <p class="explanation">\(a_{0}\) ist dabei eine Länge, die im Vorhinein festgelegt werden muss, und zu der
+                die Folge \(a_{z}\) konstruiert wird.</p>
+
+            <p class="explanation">Weitere interessante Links zum goldenen Schnitt und damit indirekt zu den anderen
+                metallischen Schnitten:<br><a
+                    href="https://www.numberphile.com/videos/the-golden-ratio-why-it-is-so-irrational">Numberphile: The
+                    Golden
+                    Ratio – Why it is so irrational</a>
+                <br><a href="https://www.numberphile.com/videos/pentagons-and-the-golden-ratio">Numberphile:
+                    Pentagons and the Golden Ratio</a>
+            </p>
+            <p style="margin-bottom: 15px;" class="explanation heading">Plastische Zahl</p>
+            <p class="explanation">Die Plastische Zahl ist eine Konstante, die die eindeutig reelle Lösung der kubischen
+                Gleichung:</p>
+            <p class="explanation center">\(x^{3}-x-1=0\),</p>
+            <p class="explanation">ist. Dabei gilt:</p>
+            <p class="explanation center">\(ψ=\frac{ \sqrt[3]{108+12\sqrt {69}}+\sqrt[3]{108+12\sqrt {69}} }{6} \approx
+                1{,}324…\).</p>
+
+            <p class="explanation">Ähnlich wie bei den metallischen Schnitten ist die plastische Zahl der Grenzwert der
+                Quotienten sukzessiver Folgeglieder der <a target="_blank"
+                    href="https://oeis.org/A000931">Padovan-Folge</a>:</p>
+            <p class="explanation center">$$ ψ := \lim_{k \rightarrow \infty} \frac{P_{k+1}}{P_{k}}\approx 1{,}324…$$
+            </p>
+
+            <p class="explanation">Ebenso wie die metallischen Schnitte kann die plastische Zahl einen Anhaltspunkt für
+                Teilungen von Strecken in Fragmente mit harmonischen Proportionen geben. Außerdem bietet die plastische
+                Zahl interessante visuelle mathematische Experimente, wie in <a target="_blank"
+                    href="https://www.numberphile.com/videos/the-plastic-ratio">diesem Video</a> zu sehen.</p>
+
+
+        </div>
+
+        <div class="gauge" id="caliper">
+            <p style="margin-bottom: 25px;" class="title">Bauanleitung Proportionszirkel</p>
+            
+            <p class="explanation">In <a href="https://blog.franz.science/proportionszirkel">diesem</a> Blogbeitrag wird beschrieben, wie man einen einfachen kleinen Proportionszirkel für den goldenen Schnitt aus Holz baut. Außerdem gibt es eine Anleitung für den Bau eines Zirkels für die plastische Zahl.</p>
+
+        </div>
+
     </div>
 
-
-
-
-
     <script>
-        function makeclear(which) {
-            switch(which) {
+        function makeclear(which) {
+            switch (which) {
                 case 'short':
-                document.getElementById('long').value = '';
-                document.getElementById('sum').value = '';
-                break;
+                    document.getElementById('long').value = '';
+                    document.getElementById('sum').value = '';
+                    break;
                 case 'long':
-                document.getElementById('short').value = '';
-                document.getElementById('sum').value = '';
-                break;
+                    document.getElementById('short').value = '';
+                    document.getElementById('sum').value = '';
+                    break;
                 case 'sum':
-                document.getElementById('short').value = '';
-                document.getElementById('long').value = '';
-                break;
-                
+                    document.getElementById('short').value = '';
+                    document.getElementById('long').value = '';
+                    break;
+
+            }
         }
-    }
 
         const gldratio = (1 + Math.sqrt(5)) / 2;
         const gldshortRatio = 1 / gldratio;
 
-        const svlrratio = (2 + Math.sqrt(8))/2;
+        const svlrratio = (2 + Math.sqrt(8)) / 2;
         const svlrshortRatio = 1 / svlrratio;
 
         const brnzratio = (3 + Math.sqrt(13)) / 2;
@@ -198,8 +394,12 @@
         const aluratio = (5 + Math.sqrt(29)) / 2;
         const alushortRatio = 1 / aluratio;
 
+        const plasticratio = (Math.cbrt(108 + 12 * Math.sqrt(69)) + (Math.cbrt(108 - 12 * Math.sqrt(69)))) / 6;
+        const plasticshortRatio = 1 / plasticratio;
+
         window.addEventListener('load', function (_) {
             const precisionEl = document.getElementById('precision');
+            const anglesEl = document.getElementById('angles');
 
             const shortInputEl = document.getElementById('short');
             const longInputEl = document.getElementById('long');
@@ -208,7 +408,7 @@
             const shortGoldEl = document.getElementById('gold-short');
             const longGoldEl = document.getElementById('gold-long');
             const sumGoldEl = document.getElementById('gold-sum');
-            
+
             const shortSilverEl = document.getElementById('silver-short');
             const longSilverEl = document.getElementById('silver-long');
             const sumSilverEl = document.getElementById('silver-sum');
@@ -229,11 +429,15 @@
             const longCustomEl = document.getElementById('custom-long');
             const sumCustomEl = document.getElementById('custom-sum');
 
+            const shortPlasticEl = document.getElementById('plastic-short');
+            const longPlasticEl = document.getElementById('plastic-long');
+            const sumPlasticEl = document.getElementById('plastic-sum');
+
             const CustomEl = document.getElementById('customInputField');
 
-            let gldsum, gldshort, gldlong, svlrsum, svlrshort, svlrlong, brnzsum, brnzshort, brnzlong, 
-            nickelsum, nickelshort, nickellong, alusum, alushort, alulong, customsum, customshort, customlong, 
-            customRatio, precision = 5;
+            let gldsum, gldshort, gldlong, svlrsum, svlrshort, svlrlong, brnzsum, brnzshort, brnzlong,
+                nickelsum, nickelshort, nickellong, alusum, alushort, alulong, customsum, customshort, customlong,
+                customRatio, plasticsum, plasticshort, plasticlong, precision = 3;
 
             precisionEl.value = precision;
 
@@ -243,56 +447,64 @@
 
 
             function update(t) {
-                        sumGoldEl.value = gldsum.toFixed(precision);
-                        shortGoldEl.value = gldshort.toFixed(precision);
-                        longGoldEl.value = gldlong.toFixed(precision);
+                sumGoldEl.value = gldsum.toFixed(precision);
+                shortGoldEl.value = gldshort.toFixed(precision);
+                longGoldEl.value = gldlong.toFixed(precision);
 
-                        shortSilverEl.value = svlrshort.toFixed(precision);
-                        longSilverEl.value = svlrlong.toFixed(precision);
-                        sumSilverEl.value = svlrsum.toFixed(precision);
+                shortSilverEl.value = svlrshort.toFixed(precision);
+                longSilverEl.value = svlrlong.toFixed(precision);
+                sumSilverEl.value = svlrsum.toFixed(precision);
 
-                        sumBronzeEl.value = brnzsum.toFixed(precision);
-                        longBronzeEl.value = brnzlong.toFixed(precision);
-                        shortBronzeEl.value = brnzshort.toFixed(precision);
+                sumBronzeEl.value = brnzsum.toFixed(precision);
+                longBronzeEl.value = brnzlong.toFixed(precision);
+                shortBronzeEl.value = brnzshort.toFixed(precision);
 
-                        sumNickelEl.value = nickelsum.toFixed(precision);
-                        longNickelEl.value = nickellong.toFixed(precision);
-                        shortNickelEl.value = nickelshort.toFixed(precision);
+                sumNickelEl.value = nickelsum.toFixed(precision);
+                longNickelEl.value = nickellong.toFixed(precision);
+                shortNickelEl.value = nickelshort.toFixed(precision);
 
-                        sumAluEl.value = alusum.toFixed(precision);
-                        longAluEl.value = alulong.toFixed(precision);
-                        shortAluEl.value = alushort.toFixed(precision);
+                sumAluEl.value = alusum.toFixed(precision);
+                longAluEl.value = alulong.toFixed(precision);
+                shortAluEl.value = alushort.toFixed(precision);
 
-                        sumCustomEl.value = customsum.toFixed(precision);
-                        longCustomEl.value = customlong.toFixed(precision);
-                        shortCustomEl.value = customshort.toFixed(precision);
+                sumCustomEl.value = customsum.toFixed(precision);
+                longCustomEl.value = customlong.toFixed(precision);
+                shortCustomEl.value = customshort.toFixed(precision);
+
+                sumPlasticEl.value = plasticsum.toFixed(precision);
+                longPlasticEl.value = plasticlong.toFixed(precision);
+                shortPlasticEl.value = plasticshort.toFixed(precision);
             }
             function calcSum(e) {
                 gldsum = Number(e.target.value);
-                gldlong = gldsum * (gldratio/(gldratio + 1));
+                gldlong = gldsum * (gldratio / (gldratio + 1));
                 gldshort = gldsum - gldlong;
 
                 svlrsum = gldsum;
-                svlrlong = svlrsum * (svlrratio/(svlrratio + 1));
+                svlrlong = svlrsum * (svlrratio / (svlrratio + 1));
                 svlrshort = svlrsum - svlrlong;
 
                 brnzsum = gldsum;
-                brnzlong = brnzsum * (brnzratio/(brnzratio + 1));
+                brnzlong = brnzsum * (brnzratio / (brnzratio + 1));
                 brnzshort = brnzsum - brnzlong;
 
                 nickelsum = gldsum;
-                nickellong = nickelsum * (nickelratio/(nickelratio + 1));
+                nickellong = nickelsum * (nickelratio / (nickelratio + 1));
                 nickelshort = nickelsum - nickellong;
 
                 alusum = gldsum;
-                alulong = alusum * (aluratio/(aluratio + 1));
+                alulong = alusum * (aluratio / (aluratio + 1));
                 alushort = alusum - alulong;
 
                 customRatio = ((Number(CustomEl.value) + Math.sqrt(4 + Math.pow(Number(CustomEl.value), 2))) / 2);
 
                 customsum = gldsum;
-                customlong = customsum * (customRatio/(customRatio + 1));
+                customlong = customsum * (customRatio / (customRatio + 1));
                 customshort = customsum - customlong;
+
+                plasticsum = gldsum;
+                plasticlong = plasticsum * (plasticratio / (plasticratio + 1));
+                plasticshort = plasticsum - plasticlong;
                 update('sum');
             }
             function calcShort(e) {
@@ -311,7 +523,7 @@
                 nickelshort = gldshort;
                 nickellong = nickelshort * nickelratio;
                 nickelsum = nickelshort + nickellong;
-                
+
                 alushort = gldshort;
                 alulong = alushort * aluratio;
                 alusum = alushort + alulong;
@@ -321,6 +533,10 @@
                 customshort = gldshort;
                 customlong = customshort * (customRatio);
                 customsum = customshort + customlong;
+
+                plasticshort = gldshort;
+                plasticlong = plasticshort * plasticratio;
+                plasticsum = plasticshort + plasticlong;
                 update('short');
             }
             function calcLong(e) {
@@ -347,10 +563,15 @@
                 customRatio = ((Number(CustomEl.value) + Math.sqrt(4 + Math.pow(Number(CustomEl.value), 2))) / 2);
 
                 customlong = Number(e.target.value);
-                customshort = customlong * (1/customRatio);
+                customshort = customlong * (1 / customRatio);
                 customsum = customshort + customlong;
+
+                plasticlong = gldlong;
+                plasticshort = plasticlong * plasticshortRatio;
+                plasticsum = plasticshort + plasticlong;
                 update('long');
             }
+
             function calcPrecision(e) {
                 precision = parseInt(e.target.value);
                 update();
@@ -370,6 +591,14 @@
                 }
             }
 
+            function calcAngles() {
+                calcSum({ target: { value: 360 } });
+                short.value = '';
+                long.value = '';
+                sum.value = '360';
+
+            }
+
             shortInputEl.addEventListener('input', calcShort);
             longInputEl.addEventListener('input', calcLong);
             sumInputEl.addEventListener('input', calcSum);
@@ -378,9 +607,17 @@
             sumInputEl.addEventListener('change', onEnd);
             CustomEl.addEventListener('input', reNew);
             precisionEl.addEventListener('input', calcPrecision);
-            
+            anglesEl.addEventListener('click', calcAngles);
+
         });
     </script>
 </body>
+
+<footer>
+    <p class="legal">© 2020 Franz Imschweiler <br> <a class="link-main" href="https://franz.science/imprint.html"
+            title="Impressum">Impressum</a> <em style="color: coral;">⬩</em> <a class="legal-btn link-main"
+            href="https://franz.science/privacy.html" title="Datenschutzerklärung">Datenschutzerklärung</a>
+    </p>
+</footer>
 
 </html>

@@ -1,25 +1,156 @@
+@font-face {
+    font-family: 'CMUSerifRoman';
+    src: url('/fonts/cmunrm.eot'); /* IE9 Compat Modes */
+    src: url('/fonts/cmunrm.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('/fonts/cmunrm.woff') format('woff'), /* Pretty Modern Browsers */
+         url('/fonts/cmunrm.ttf')  format('truetype'), /* Safari, Android, iOS */
+         url('/fonts/cmunrm.svg#svgFontName') format('svg'); /* Legacy iOS */
+  }
+
+  
 
 body {
     font-size: 17px;
     font-family: sans-serif;
-    color: white;
+    color: darkred;
     margin: 0;
     padding:0;
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    font-family: 'CMUSerifRoman';
+    font-weight: lighter;
+    font-style: lighter;
+    color:darkred;
+    overflow-x: hidden;
+    background-color: white;
+}
+
+.calculator, .math, .gauge {
+    margin: 0;
+    padding:0;
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+    width: 100%;
+}
+
+.calculator {
+    
+    background-color: whitesmoke;
+    align-items: center;
+}
+
+.math {
+    background-color: white;
+}
+
+.gauge {
+    background-color: whitesmoke;
+}
+
+.precision {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 20px 1.5%;
+    flex: 0.25;
+}
+
+.sequence-link {
+    min-height: 100%;
+    flex: 1;
+    text-align: right;
+    display: flex;
+    padding: 1.5%;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.foot-row {
+    width: 100%;
+    display: flex;
+    padding:0;
+    justify-content: space-between;
+}
+
+a {
+    margin-right: 2px;
+    margin-left: 2px;
+    color: coral;
+}
+
+
+.logo {
+    height: 50vw;
+    width: 50vw;
+    max-width: 150px;
+    max-height: 150px;
+    background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3C!-- Generator: Adobe Illustrator 24.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0) --%3E%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 100 100' style='enable-background:new 0 0 100 100;' xml:space='preserve'%3E%3Cstyle type='text/css'%3E .st0%7Bfill:%23FFFFFF;%7D .st1%7Bfill:%23020203;%7D%0A%3C/style%3E%3Ccircle class='st0' cx='50' cy='50' r='50'/%3E%3Cg%3E%3Cg%3E%3Ccircle class='st1' cx='52.73' cy='36.7' r='0.99'/%3E%3Ccircle class='st1' cx='34.68' cy='63.06' r='0.99'/%3E%3Cpath class='st1' d='M32.37,64.68l-8.91,14.35c-0.07,0.1-0.04,0.24,0.06,0.31c0.1,0.07,0.24,0.04,0.31-0.06L33.99,65.8 c1.11,0.28,2.33-0.14,3.02-1.15c0.64-0.93,0.64-2.1,0.12-3.01l16.9-22.43l0,0c0.41-0.21,0.77-0.52,1.04-0.92 c0.88-1.29,0.55-3.05-0.73-3.93c-1.29-0.88-3.05-0.55-3.93,0.73c-0.28,0.4-0.43,0.85-0.48,1.3c0,0-14.81,23.86-14.81,23.86 c-1.04-0.16-2.13,0.27-2.77,1.2C31.66,62.46,31.71,63.75,32.37,64.68'/%3E%3C/g%3E%3Cpath class='st1' d='M78.31,24.53c-6.5,9.24-25.63,9.34-25.63,9.34c-28.91,5.15-45.4,27.16-45.4,27.16l0,0 c-0.06,0.07-0.08,0.17-0.03,0.25c0.06,0.11,0.19,0.15,0.3,0.09c0.02-0.01,0.04-0.02,0.05-0.04l0,0c0,0,26.07-20.63,45.04-21.82 c0,0,28.23-0.74,32.07-17.4l0,0c0.05-0.95,0.02-1.74-0.42-2.55c-1.04-1.92-3.44-2.63-5.36-1.59c-1.92,1.04-2.63,3.44-1.59,5.36 c0.26,0.48,0.61,0.88,1.01,1.21'/%3E%3Cg%3E%3Cg%3E%3Ccircle class='st1' cx='80.81' cy='21.46' r='0.99'/%3E%3Ccircle class='st1' cx='62.73' cy='47.8' r='0.99'/%3E%3C/g%3E%3Cpath class='st1' d='M77.5,23.63c-9.87,5.5-11.97,24.51-11.97,24.51c-8.15,28.21-31.76,42.31-31.76,42.31l0,0 c-0.07,0.05-0.18,0.06-0.26,0c-0.1-0.07-0.13-0.21-0.06-0.31c0.01-0.02,0.03-0.03,0.04-0.05l0,0c0,0,23.24-23.78,26.41-42.51 c0,0,3.69-28,20.66-30.07l0,0c0.95,0.05,1.73,0.17,2.49,0.69c1.8,1.24,2.26,3.7,1.02,5.5c-1.24,1.8-3.7,2.26-5.5,1.02 c-0.45-0.31-0.82-0.7-1.09-1.13'/%3E%3C/g%3E%3Cg%3E%3Cpath class='st1' d='M31.85,63.43c0.05,0.32,0.15,0.65,0.31,0.95c0.17,0.3,0.38,0.57,0.62,0.78c0.86,0.75,2.14,0.93,3.21,0.36 c0.99-0.54,1.53-1.58,1.48-2.63l25.26-12.26l0,0c0.46,0,0.92-0.11,1.35-0.34c1.37-0.74,1.88-2.46,1.14-3.83s-2.46-1.88-3.83-1.14 c-0.43,0.23-0.77,0.56-1.02,0.94c0,0-24.05,14.49-24.05,14.49c-0.85-0.62-2.02-0.73-3.01-0.2C32.23,61.13,31.69,62.29,31.85,63.43 z'/%3E%3Ccircle class='st0' cx='62.73' cy='47.8' r='0.99'/%3E%3Ccircle class='st0' cx='34.65' cy='63.03' r='0.99'/%3E%3C/g%3E%3Ccircle class='st0' cx='80.81' cy='21.46' r='0.99'/%3E%3Ccircle class='st0' cx='52.73' cy='36.7' r='0.99'/%3E%3C/g%3E%3C/svg%3E%0A");
+}
+
+.title {
+    text-align: center;
+    align-self: center;
+    font-size: 22px;
+    margin: 0;
+    
+    padding: 0;
+    padding-top: 15px;
+    width: 80vw;
+    max-width: 100%;
+    height: fit-content;
+}
+
+.explanation {
+    color: black;
+    text-align: left;
+    max-width: 95vw;
+    padding: 0 2.5%;
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+.center {
+    align-self: center;
+    font-size: medium !important;
+}
+
+.heading {
+    color: darkred;
+    text-align: left;
+    max-width: 95vw;
+    padding: 0 2.5%;
+    margin-bottom: 0;
+    margin-top: 25px;
+}
+
+.contents {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    font-size: 17px;
+    margin: 0;
+    padding-top: 5px;
+    height: fit-content;
 }
 
 .wrap {
     display: flex;
     flex-direction: column;
-    width: 100vw;
-    max-width: 1000px;
-    padding: 2vh 2.5%;
+    width: 95vw;
+    max-width: 700px;
+    margin: 0;
+    padding: 2vw 0exx;
     flex: 1;
     justify-content: center;
     align-items: center;
-    background-color: darkred;
+    background-color: white;
+    padding-bottom: 110px;
+
 }
 
 .input-row {
@@ -29,11 +160,10 @@ body {
 }
 
 input {
-    
     flex: 1;
     max-height: 21px;
     width: 100%;
-    
+    font-size: 14px;   
 }
 
 .inputbox {
@@ -43,11 +173,21 @@ input {
     flex: 0.33333;
     align-items: center;
     justify-content: center;
+    text-align: center;
+}
+
+.inputheader {
+    font-size: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
 }
 
 .header {
     font-size: 20px;
-    padding-top: 15px;
+    padding-top: 20px;
     padding-bottom: 5px;
     margin: 0;
     display: flex;
@@ -59,9 +199,9 @@ input {
     margin: 0;
 }
 
-.customin {
-    margin-left: 5%;
-    
+.custom {
+    margin-left: 7px;
+    max-width: 50px;
 }
 
 .normallyhidden {
@@ -70,10 +210,10 @@ input {
     font-size: 0;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 400px) {
     .wrap {
         min-width: 100vw;
-        background-color: darkred;
+        background-color: white;
     }
 
     .input-row {
@@ -94,8 +234,45 @@ input {
         width: 100%;
         font-size: 2.5vh;
     }
-    
+
+    .contents {
+        flex-direction: column;
+    } 
+
+    .logo {
+        height: 50vw;
+        width: 50vw;
+        max-width: 100px;
+        max-height: 100px;
+    }
+
+    .foot-row {
+        width: 80vw;
+                display: flex;
+        flex-direction: column;
+        padding:0;
+        justify-content: space-between;
+
+    }    
+
+    .sequence-link {
+        text-align: center;
+    }
+
 }
+
+.legal {
+    position: relative;
+    margin-top: -70px;
+    max-height: 70px;
+    padding-bottom: 30px;
+    text-align: center;
+}
+
+footer {
+    height: 0;
+}
+
 
 
 
