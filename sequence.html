@@ -9,7 +9,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="style-sequence.css">
 
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -22,6 +22,25 @@
 
     <title>Zahlenfolgenrechner</title>
 
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        MathJax = {
+            chtml: {
+                scale: 1,                      // global scaling factor for all expressions
+                minScale: .8,                  // smallest scaling factor to use
+                matchFontHeight: true,         // true to match ex-height of surrounding font
+                mtextInheritFont: false,       // true to make mtext elements use surrounding font
+                merrorInheritFont: true,       // true to make merror text use surrounding font
+                mathmlSpacing: false,          // true for MathML spacing rules, false for TeX rules
+                skipAttributes: {},            // RFDa and other attributes NOT to copy to the output
+                exFactor: .5,                  // default size of ex in em units
+                displayAlign: 'center',        // default for indentalign when set to 'auto'
+                displayIndent: '0'             // default for indentshift when set to 'auto'
+            }
+        };
+    </script>
+
 </head>
 
 <body>
@@ -31,15 +50,230 @@
         <div class="title">
             <p class="nopad">Zahlenfolgenrechner</p>
         </div>
-        <!-- <div class="contents">
-            <a href="#calc">Rechner</a> <a href="#math">Mathematik</a> <a href="#caliper">Proportionszirkel</a>
-        </div> -->
+        <div class="contents">
+            <a href="#calc">Rechner</a> <a href="#math">Mathematik</a>
+        </div>
+
+        <div class="calculator" id="calc">
+
+            <!-------------------------- INPUT AREA -------------------------->
+            <div class="header">
+                <p class="nopad">Input</p>
+            </div>
+            <div class="input-row">
+                <div class="inputbox">
+                    <label for="n">\(n =\) </label>
+                    <input type="number" onfocus="this.select()" id="n" inputmode="numeric"
+                        pattern="[0-9]*" value="1">
+                </div>
+                <div class="inputexp">
+                    <p>\(n=1\) für Goldenen Schnitt,<br>\(n=2\) für Silbernen Schnitt, …</p>
+                </div>
+
+                
+                <div class="inputbox">
+                    <label for="a-base">\(a_{0} =\) </label>
+                    <input type="number" onfocus="this.select()" id="a-base" inputmode="numeric"
+                        pattern="[0-9]*" value="1">
+                </div>
+                <div class="inputexp">
+                    <p>\(a_{0}\) ist die Grundlänge, zu der passende Zahlenfolgen gefunden werden.</p>
+                </div>
+            </div>
+
+            <!-------------------------- GOLDEN RATIO -------------------------->
+            <div class="header">
+                <p class="nopad">Zahlenfolge</p>
+            </div>
+            <div class="table">
+                <table>
+                    <thead  style="font-weight: bold;">
+                      <tr>
+                        <th class="tablehead">\(z\)</th>
+                        <th class="tablehead">Approximation</th>
+                        <!-- <th class="tablehead">Ergebnis</th> -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>-2</td>
+                        <td id="minus2-approx">1</td>
+                        <!-- <td id="minus2-result">1</td> -->
+                      </tr>
+                      <tr>
+                        <td>-1</td>
+                        <td id="minus1-approx">1</td>
+                        <!-- <td id="minus1-result">1</td> -->
+                      </tr>
+                      <tr>
+                        <td>0</td>
+                        <td id="zero-approx">1</td>
+                        <!-- <td id="zero-result">1</td> -->
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td id="one-approx">1</td>
+                        <!-- <td id="one-result">1</td> -->
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td id="two-approx">1</td>
+                        <!-- <td id="two-result">1</td> -->
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td id="tre-approx">1</td>
+                        <!-- <td id="tre-result">1</td> -->
+                      </tr>
+                      <tr><td></td><td></td></tr>
+                      <tr>
+                        <td><input style="width: 50px;" type="number" id="in" inputmode="numeric" pattern="[0-9]*" value="4" step="1" onfocus="this.select()"></td>
+                        <td id="in-approx">1</td>
+                        <!-- <td id="in-result">1</td> -->
+                      </tr>
+                      <tr>
+                        <td id="io-num"></td>
+                        <td id="io-approx">1</td>
+                        <!-- <td id="io-result">1</td> -->
+                      </tr>
+                      <tr>
+                        <td id="it-num"></td>
+                        <td id="it-approx">1</td>
+                        <!-- <td id="it-result">1</td> -->
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+
+            <div class="foot-row">
+            <div class="precision">
+                <label for="precision">Nachkommastellen:</label>
+                <input style="align-self: center;" type="number" id="precision" min="0" max="18" step="1" inputmode="numeric" pattern="[0-9]*" onfocus="this.select()">
+            </div>
+            <div>
+                <a href="./">Proportionsrechner</a>
+            </div>
+            </div>
+        </div>
     
-    <p>Coming soon™</p>
-    <a href="./">Zurück</a>
-    
-    
-    
-    
+        <div class="math" id="math">
+            <p class="title">Mathematischer Hintergrund</p>
+            <p style="margin-bottom: 15px;" class="explanation heading">Funktionsweise</p>
+            <p class="explanation">
+                Der Rechner konstruiert eine Zahlenfolge, deren Glieder jeweils in einem metallischen Schnitt zu den angrenzenden zwei Gliedern stehen. 
+                Der Zweck dieser Zahlenfolgen ist die Vereinfachung von Designs, in denen verschiedene zueinander harmonische Verhältnisse benötigt werden.
+                Die Zahlenfolgen basieren auf dieser Gleichung:
+            </p>
+            <p class="explanation center">\(a_{z}:=(\frac{n+\sqrt{n^{2}+4}}{2})^{z} * a_{0}\) für alle \(z\in\mathbb{Z}\).</p>
+            <p class="explanation">
+                Dabei ist \(a_{0}\) eine Grundlänge, zu der die Zahlenfolge konstruiert wird. Mit \(n\) wird der metallische Schnitt definiert, wobei \(n=1\) der 
+                Goldene Schnitt ist, \(n=2\) der Silberne Schnitt, usw. Nähere Informationen hierzu sind auf der Seite des <a href="./">Proportionsrechners</a> zu finden.
+                Für den Goldenen Schnitt lässt sich das allgemeine Glied dementsprechend so ausdrücken:
+            </p>
+            <p class="explanation center">\(a_{z}:=(\frac{1+\sqrt{5}}{2})^{z} * a_{0}\) bzw. \(a_{z}:= \Phi^{z} * a_{0}\) mit \(z\in\mathbb{Z}\).</p>
+            
+        </div>
+
+
+        
     </div>
+
+    <script>
+        window.addEventListener('load', function (_) {
+            const precisionEl = document.getElementById('precision');
+
+            const nInputEl = document.getElementById('n');
+            const aInputEl = document.getElementById('a-base');
+
+            const m2aEl = document.getElementById('minus2-approx');
+            // const m2rEl = document.getElementById('minus2-result');
+
+            const m1aEl = document.getElementById('minus1-approx');
+            // const m1rEl = document.getElementById('minus1-result');
+
+            const zeroaEl = document.getElementById('zero-approx');
+            // const zerorEl = document.getElementById('zero-result');
+            
+            const oneaEl = document.getElementById('one-approx');
+            // const onerEl = document.getElementById('one-result');
+
+            const twoaEl = document.getElementById('two-approx');
+            // const tworEl = document.getElementById('two-result');
+
+            const threeaEl = document.getElementById('tre-approx');
+            // const threerEl = document.getElementById('tre-result');
+
+            const inEl  = document.getElementById('in');
+            const inaEl = document.getElementById('in-approx');
+            // const inrEl = document.getElementById('in-result');
+
+            const inp1aEl = document.getElementById('io-approx');
+            // const inp1rEl = document.getElementById('io-result');
+            const ip1El   = document.getElementById('io-num');
+
+            const inp2aEl = document.getElementById('it-approx');
+            // const inp2rEl = document.getElementById('it-result');
+            const ip2El   = document.getElementById('it-num');
+
+            
+            
+
+            let m2approx, m1approx, zeroapprox,
+                oneapprox, twoapprox, threeapprox,
+                inapprox, inp1approx, inp2approx,
+                ip1val, ip2val, test, precision = 3;
+
+            precisionEl.value = precision;
+
+            calc();
+            update();
+
+            function update(t) {
+                m2aEl.innerHTML = m2approx.toFixed(precision);
+                m1aEl.innerHTML = m1approx.toFixed(precision);
+                zeroaEl.innerHTML = zeroapprox.toFixed(precision);
+                oneaEl.innerHTML = oneapprox.toFixed(precision);
+                twoaEl.innerHTML = twoapprox.toFixed(precision);
+                threeaEl.innerHTML = threeapprox.toFixed(precision);
+                inaEl.innerHTML = inapprox.toFixed(precision);
+                inp1aEl.innerHTML = inp1approx.toFixed(precision);
+                inp2aEl.innerHTML = inp2approx.toFixed(precision);
+
+                ip1El.innerHTML = ip1val.toFixed(0);
+                ip2El.innerHTML = ip2val.toFixed(0);
+            }
+            
+            function calc(e) {
+                m2approx = Math.pow(((Number(nInputEl.value) + Math.sqrt(4 + Math.pow(Number(nInputEl.value), 2))) / 2), (-2)) * aInputEl.value;
+                m1approx = Math.pow(((Number(nInputEl.value) + Math.sqrt(4 + Math.pow(Number(nInputEl.value), 2))) / 2), (-1)) * aInputEl.value;
+                zeroapprox = 1 * aInputEl.value;
+                oneapprox = ((Number(nInputEl.value) + Math.sqrt(4 + Math.pow(Number(nInputEl.value), 2))) / 2) * aInputEl.value;
+                twoapprox = Math.pow(((Number(nInputEl.value) + Math.sqrt(4 + Math.pow(Number(nInputEl.value), 2))) / 2), 2) * aInputEl.value;
+                threeapprox = Math.pow(((Number(nInputEl.value) + Math.sqrt(4 + Math.pow(Number(nInputEl.value), 2))) / 2), 3) * aInputEl.value;
+                inapprox = Math.pow(((Number(nInputEl.value) + Math.sqrt(4 + Math.pow(Number(nInputEl.value), 2))) / 2), inEl.value) * aInputEl.value;
+                test = Number(inEl.value) + 1;
+                inp1approx = Math.pow(((Number(nInputEl.value) + Math.sqrt(4 + Math.pow(Number(nInputEl.value), 2))) / 2), (Number(inEl.value) + 1)) * aInputEl.value;
+                inp2approx = Math.pow(((Number(nInputEl.value) + Math.sqrt(4 + Math.pow(Number(nInputEl.value), 2))) / 2), (Number(inEl.value) + 2)) * aInputEl.value;
+                ip1val = Number(inEl.value) + 1;
+                ip2val = Number(inEl.value) + 2;
+                
+                update('sum');
+            }
+            
+            function calcPrecision(e) {
+                precision = parseInt(e.target.value);
+                update();
+            }
+
+            function onEnd() {
+                update();
+            }
+
+            nInputEl.addEventListener('input', calc);
+            aInputEl.addEventListener('input', calc);
+            inEl.addEventListener('input', calc);
+
+            precisionEl.addEventListener('input', calcPrecision);
+        });
+    </script>
 </body>

@@ -56,7 +56,7 @@
 
             <!-------------------------- INPUT AREA -------------------------->
             <div class="inputheader">
-                <p class="nopad">Input <i>(n = 0)</i></p>
+                <p class="nopad">Input</p>
             </div>
             <div class="input-row">
                 <div class="inputbox">
@@ -73,7 +73,7 @@
 
                 <div class="inputbox">
                     <label for="sum">Zusammen:</label>
-                    <input type="number" onfocus="makeclear('sum'); this.select()" id="sum" value="15.000"
+                    <input type="number" onfocus="makeclear('sum'); this.select()" id="sum" value="15"
                         inputmode="numeric" pattern="[0-9]*">
                 </div>
             </div>
@@ -239,51 +239,66 @@
 
         <div class="math" id="math">
             <p class="title">Mathematischer Hintergrund</p>
-            <p style="margin-bottom: 15px;" class="explanation heading">Metallische Schnitte</p>
+            <p style="margin-bottom: 15px;" class="explanation heading">Goldener Schnitt</p>
             <p class="explanation">Proportionen sind dann im goldenen Schnitt, wenn der Major \(a\) (längere Seite) zum
-                Minor \(b\) in diesem Verhältnis steht: \( \frac{a}{b}= \frac{a+b}{a}\). Durch Umformung ergibt sich
-                hieraus die Gleichung: \( \frac {a}{b}= \frac {b}{a}+1\) bzw. \(Φ = \frac {1}{Φ} +1\).</p>
-            <p class="explanation">Die Lösungen für diese Gleichungen sind: \( Φ= \frac {1 \pm \sqrt{5}} {2}\) bzw. \(
-                Φ= \frac {1 + \sqrt{5}} {2}\) und \( \overline{Φ}= \frac {1 - \sqrt{5}} {2}\), da \( Φ+ \overline{Φ}=1\)
-                und \( Φ+ \frac {1}{Φ}=1\). Somit ergibt sich zudem:</p>
-            <p class="explanation center">\( \overline { Φ }= - \frac {1} { Φ}\).</p>
-
+                Minor \(b\) in diesem Verhältnis steht:</p>
+            <p class="explanation center">\( \frac{a}{b}= \frac{a+b}{a}\).</p>
+            <p class="explanation">Das heißt, dass das Verhältnis der gesamten Strecke zum Major gleich dem des Major zum Minor ist. Durch Umformung ergibt sich
+                hieraus die Gleichung:</p>
+            <p class="explanation center">\( \frac {a}{b}= \frac {b}{a}+1\) bzw.</p>
+            <p class="explanation center">\( \Phi = \frac {1}{ \Phi} +1\),</p>
+            <p class="explanation">wobei \( \Phi\) das Teilungsverhältnis des Goldenen Schnitts ist (auch <i>Goldene Zahl</i> genannt).</p>
+            <p class="explanation">Löst man diese Gleichung, erhält man folgende Lösungen:</p>
+            <p class="explanation center">\(  \Phi_{1,2}= \frac {1 \pm \sqrt{5}} {2}\) bzw.</p>
+            <p class="explanation center">\( \Phi= \frac {1 + \sqrt{5}} {2}\) und \( \overline{ \Phi}= \frac {1 - \sqrt{5}} {2}\).</p>
+            <p class="explanation">Da \(  \Phi+ \overline{ \Phi}=1\)
+                und \(  \Phi+ \frac {1}{ \Phi}=1\) gilt, ergibt sich zudem:</p>
+            <p class="explanation center">\( \overline {  \Phi }= - \frac {1} {  \Phi}\).</p>
+            <p style="margin-bottom: 15px;" class="explanation heading">Silberner Schnitt</p>
             <p class="explanation">Ändert man das Proportionsverhältnis nun so, dass: \( \frac {a} {b} = \frac
-                {2a+b}{a}\), gilt, so erhält man nach demselben Prinzip den silbernen Schnitt mit \( δ_{S} = 1+
-                \sqrt{2}\).</p>
+                {2a+b}{a}\) gilt, so erhält man nach demselben Prinzip den silbernen Schnitt mit</p>
+            <p class="explanation center">\( δ_{S} = 1+\sqrt{2}\).</p>
+            <p class="explanation">Für den Silbernen Schnitt gilt also, dass das Verhältnis der gesamten Länge zum Major gleich dem von zweimal dem Major zum Minor ist.</p>    
 
+            <p style="margin-bottom: 15px;" class="explanation heading">Metallische Schnitte</p>
             <p class="explanation">Allgemein gesprochen gibt für alle positiven natürlichen Zahlen \(n\) die
-                quadratische Gleichung: \(x= \frac {1}{x}+n\), analog zur Gleichung des goldenen Schnitts einen Wert,
-                mit dem das Verhältnis zwischen zwei Längen berechnet werden kann.</p>
-
-            <p class="explanation">Diese Zusammenhänge lassen sich auch als Kettenbruch ausdrücken:</p>
+                quadratische Gleichung:</p>
+            <p class="explanation center">\(x= \frac {1}{x}+n\),</p>
+            <p class="explanation">analog zur Gleichung des goldenen Schnitts, einen Wert,
+                der das Teilungsverhältnis einer Länge beschreibt.</p>
+            <p class="explanation">Das Verhältnis der Gesamtlänge zum Major entspricht dabei immer dem von \(n\) mal dem Major zum Minor.</p>
+            
+            <p style="margin-bottom: 15px;" class="explanation heading">Als Kettenbruch</p>
+            <p class="explanation">Diese Zusammenhänge lassen sich auch als Kettenbruch ausdrücken. Für das Beispiel des Goldenen Schnitts (mit \(n = 1\)) gilt:</p>
             <p class="explanation center">\( 1+\frac {1} {1+\frac {1} {1+\frac {1} {1+\frac {1} {1+\frac {1} {1+\ddots
                 }}}}} \).</p>
 
-            <p class="explanation">Zusammenfassend kann man diesen Bruch auch darstellen als:</p>
+            <p class="explanation">Wenn man diesen Kettenbruch gleich \(x\) setzt, kann man diesen auch so zusammenfassen:</p>
             <p class="explanation center">\( x= 1+ \frac {1} {x} \).</p>
 
-            <p class="explanation">Oder allgemein gesprochen: </p>
+            <p class="explanation">Der Kettenbruch für den allgemeinen metallischen Schnitt lautet demnach:</p>
             <p class="explanation center">\( n+\frac {1} {n+\frac {1} {n+\frac {1} {n+\frac {1} {n+\frac {1} {n+\ddots
-                }}}}} \Rightarrow x=n+ \frac {1}{n} \).</p>
+                }}}}} \Rightarrow x=n+ \frac {1}{x} \).</p>
 
-            <p class="explanation">Wie oben gesehen, ergibt sich für \(n=1\) eine Lösung: \(Φ = x \approx 1{,}618\), den
+            <p class="explanation">Die Zusammenfassungen entsprechen den quadratischen Gleichungen des allgemeinen metallischen Schnitts.
+                Wie oben gesehen, ergibt sich für \(n=1\) eine Lösung: \( \Phi = x \approx 1{,}618\), den
                 goldenen Schnitt. Für \(n=2\) ergibt sich der silberne Schnitt mit \(δ_{S} = x \approx 2{,}414\), usw.
             </p>
 
+            <p style="margin-bottom: 15px;" class="explanation heading">Verbindung zur Geometrie und zu Zahlenreihen</p>
             <p class="explanation">Der goldene Schnitt steht in Verbindung zum <a target="_blank"
                     href="https://de.wikipedia.org/wiki/Pentagramm#Goldener_Schnitt">Pentagramm</a> bzw. Pentagon. Beim
                 silbernen Schnitt ist das assoziierte Polygon das Oktagon, beim bronzenen Schnitt das Tridekagon, ….
-                Weitere Infos gibt es <a target="_blank" href="https://tellerm.com/math/metal_ngons/">hier
+                Weitere Infos gibt es <a href="https://tellerm.com/math/metal_ngons/">hier
                     (englisch)</a>.</p>
 
             <p class="explanation">Weiterhin steht der goldene Schnitt in Verbindung mit der <a target="_blank"
                     href="https://oeis.org/A000045">Fibonacci-Folge</a>, da der Grenzwert des Verhältnisses von zwei
-                aufeinanderfolgenden Zahlen dieser Folge gegen den Wert Φ geht. Ebenso ist der silberne Schnitt mit der
-                <a target="_blank" href="https://oeis.org/A096650">Pell-Folge</a> verbunden und der bronzene Schnitt mit
-                <a target="_blank" href=" https://oeis.org/A006190">dieser Reihe</a>.</p>
+                aufeinanderfolgenden Zahlen dieser Folge gegen den Wert  \Phi geht. Ebenso ist der silberne Schnitt mit der
+                <a href="https://oeis.org/A096650">Pell-Folge</a> verbunden und der bronzene Schnitt mit
+                <a href=" https://oeis.org/A006190">dieser Reihe</a>.</p>
 
-            <p class="explanation center">$$Φ ∶= \lim_{k \rightarrow \infty } \frac{ f_{k+1} }{f_{k}} = \frac{1+
+            <p class="explanation center">$$ \Phi ∶= \lim_{k \rightarrow \infty } \frac{ f_{k+1} }{f_{k}} = \frac{1+
                 \sqrt{5} }{2} \approx 1{,}618…$$$$δ_{S} ∶= \lim_{k \rightarrow \infty } \frac{ P_{k+1} }{P_{k}} = 1+
                 \sqrt{2} \approx 2{,}414…$$$$ \vdots $$</p>
 
@@ -297,12 +312,12 @@
                 {3}{2}$$$$1+\frac{1}{1+\frac {1}{1+\frac {1}{1}}}=\frac {5}{3}$$</p>
 
             <p class="explanation">Als Lösungen ergeben sich die sukzessiven Verhältnisse der Fibonacci-Folge: \( \frac
-                {2}{1}, \frac {3}{2}, \frac {5}{3},… Φ \). Deshalb gilt (wie oben):</p>
-            <p class="explanation center">$$Φ ∶= \lim_{k \rightarrow \infty } \frac{ f_{k+1} }{f_{k}} = \frac{1+
+                {2}{1}, \frac {3}{2}, \frac {5}{3},…  \Phi \). Deshalb gilt (wie oben):</p>
+            <p class="explanation center">$$ \Phi ∶= \lim_{k \rightarrow \infty } \frac{ f_{k+1} }{f_{k}} = \frac{1+
                 \sqrt{5} }{2} \approx 1{,}618…$$</p>
-
-            <p class="explanation">Analog dazu gilt dies auch für \(n\): \(1, n, n^{2}+1, n(n+1)+n,…\).</p>
-
+            <!-- <p class="explanation">Analog dazu gilt dies auch für \(n\): \(1, n, n^{2}+1, n(n+1)+n,…\).</p> -->
+            
+            <p style="margin-bottom: 15px;" class="explanation heading">Verwendung der metallischen Schnitte</p>
             <p class="explanation">Auch wenn die ästhetisch harmonische Wirkung der metallischen Schnitte, insbesondere
                 des goldenen Schnitts, in der Forschung umstritten sind, bieten sie aufgrund der engen Verbindung mit
                 verschiedenen Naturaspekten einen guten Anhaltspunkt für Designer.</p>
@@ -310,16 +325,16 @@
             <p class="explanation">Ein weiterer sinnvoller Anhaltspunkt für Designer sind die <b>metallischen
                     Winkel</b>. Sie lassen sich berechnen, indem man den Vollwinkel des Kreises im jeweiligen Schnitt
                 teilt. So beträgt beispielsweise der goldene Winkel circa 137,5° und seine Ergänzung zum Vollwinkel
-                222,5°.</p>
+                222,5°. <a id="angles" href="#calc">Jetzt testen</a></p>
 
             <p class="explanation">Außerdem eine sinnvolle Ergänzung für Designer sind die metallischen Zahlenfolgen,
                 mit denen sich kaskadierende Proportionen erstellen lassen. Das Prinzip dieser Zahlenfolgen ist, dass je
                 drei aufeinanderfolgende Glieder einen goldenen Schnitt bilden.</p>
             <p class="explanation">Das allgemeine Glied einer solchen Zahlenfolge lässt sich so beschreiben:</p>
-            <p class="explanation center">\(a_{z}= Φ^{z}*a_{0}\) für alle \(z \in \mathbb{Z}\).</p>
+            <p class="explanation center">\(a_{z}=  \Phi^{z}*a_{0}\) für alle \(z \in \mathbb{Z}\).</p>
 
             <p class="explanation">\(a_{0}\) ist dabei eine Länge, die im Vorhinein festgelegt werden muss, und zu der
-                die Folge \(a_{z}\) konstruiert wird.</p>
+                die Folge \(a_{z}\) konstruiert wird. <a href="sequence.html">Zum Zahlenfolgenrechner</a></p>
 
             <p class="explanation">Weitere interessante Links zum goldenen Schnitt und damit indirekt zu den anderen
                 metallischen Schnitten:<br><a
@@ -338,14 +353,14 @@
                 1{,}324…\).</p>
 
             <p class="explanation">Ähnlich wie bei den metallischen Schnitten ist die plastische Zahl der Grenzwert der
-                Quotienten sukzessiver Folgeglieder der <a target="_blank"
+                Quotienten sukzessiver Folgeglieder der <a
                     href="https://oeis.org/A000931">Padovan-Folge</a>:</p>
             <p class="explanation center">$$ ψ := \lim_{k \rightarrow \infty} \frac{P_{k+1}}{P_{k}}\approx 1{,}324…$$
             </p>
 
             <p class="explanation">Ebenso wie die metallischen Schnitte kann die plastische Zahl einen Anhaltspunkt für
                 Teilungen von Strecken in Fragmente mit harmonischen Proportionen geben. Außerdem bietet die plastische
-                Zahl interessante visuelle mathematische Experimente, wie in <a target="_blank"
+                Zahl interessante visuelle mathematische Experimente, wie in <a
                     href="https://www.numberphile.com/videos/the-plastic-ratio">diesem Video</a> zu sehen.</p>
 
 
@@ -612,12 +627,5 @@
         });
     </script>
 </body>
-
-<footer>
-    <p class="legal">© 2020 Franz Imschweiler <br> <a class="link-main" href="https://franz.science/imprint.html"
-            title="Impressum">Impressum</a> <em style="color: coral;">⬩</em> <a class="legal-btn link-main"
-            href="https://franz.science/privacy.html" title="Datenschutzerklärung">Datenschutzerklärung</a>
-    </p>
-</footer>
 
 </html>

@@ -27,27 +27,25 @@ body {
     background-color: white;
 }
 
-.calculator, .math, .gauge {
+.calculator, .math {
     margin: 0;
     padding:0;
     display: flex;
     flex-direction: column;
     margin-top: 25px;
-    width: 100%;
+    
 }
 
 .calculator {
-    
     background-color: whitesmoke;
     align-items: center;
+    /* justify-content: center; */
+    min-width: 70%;
 }
 
 .math {
     background-color: white;
-}
-
-.gauge {
-    background-color: whitesmoke;
+    width: 100%;
 }
 
 .precision {
@@ -59,21 +57,13 @@ body {
     flex: 0.25;
 }
 
-.sequence-link {
-    min-height: 100%;
-    flex: 1;
-    text-align: right;
-    display: flex;
-    padding: 1.5%;
-    flex-direction: column;
-    justify-content: center;
-}
-
 .foot-row {
     width: 100%;
     display: flex;
-    padding:0;
-    justify-content: space-between;
+    padding:0 0 1.2rem 0;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 a {
@@ -155,24 +145,37 @@ a {
 
 .input-row {
     display: flex;
-    width: 100%;
-    max-height: 80px;
+    align-items: center;
+    flex-flow: column wrap;
 }
 
 input {
-    flex: 1;
+    /* flex: 1; */
     max-height: 21px;
-    width: 100%;
-    font-size: 14px;   
+    width: 150px;
+    font-size: 14px;  
+    margin: 1%;
 }
 
 .inputbox {
+    max-width: 200px;
     padding: 0 1.5%;
     display: flex;
-    flex-direction: column;
-    flex: 0.33333;
+    flex-direction: row;
+    flex: 0.25;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.inputexp {
+    padding: 0 0.5rem;
+    margin: -12px 0 0 0 ;
+    width: 80vw;
+    max-width: 300px;
+    height: auto;
+    color: black;
+    font-size: 0.9rem;
     text-align: center;
 }
 
@@ -199,45 +202,58 @@ input {
     margin: 0;
 }
 
-.custom {
-    margin-left: 7px;
-    max-width: 50px;
+table {
+    border-collapse: collapse;
 }
 
-.normallyhidden {
-    height: 0;
-    width: 0;
-    font-size: 0;
+.table {
+    border-collapse: collapse;
+    max-width: 350px;
+    overflow: scroll;
 }
 
-@media screen and (max-width: 400px) {
+th, td, tr {
+    border-bottom: 1px solid #ddd;
+    color: black;
+}
+
+/* tr:nth-child(even):hover {
+    background-color: whitesmoke;
+}
+
+tr:nth-child(odd):hover {
+    background-color: gray;
+} */
+
+tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+.tablehead {
+    padding-right: 0.5rem;
+    text-align: left;
+    min-width: 100px;
+}
+
+label {
+    color: black;
+}
+
+
+@media screen and (max-width: 550px) {
     .wrap {
         min-width: 100vw;
         background-color: white;
     }
 
-    .input-row {
-        flex-flow: column wrap;
-        width: 80vw;
-        min-width: 200px;
-        flex-wrap: nowrap;
-        max-height: 800px;
-    }
-
-    input {
-        margin: 1%;
-        
-    }
-
-    .normallyhidden {
-        height: auto;
+    .calculator {
         width: 100%;
-        font-size: 2.5vh;
     }
 
-    .contents {
-        flex-direction: column;
-    } 
+    .table {
+        max-width: 80vw;
+        width: auto;
+    }
 
     .logo {
         height: 50vw;
@@ -248,15 +264,8 @@ input {
 
     .foot-row {
         width: 80vw;
-                display: flex;
-        flex-direction: column;
-        padding:0;
         justify-content: space-between;
 
-    }    
-
-    .sequence-link {
-        text-align: center;
     }
 
 }
