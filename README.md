@@ -4,4 +4,5 @@
 
 ## ToDos:
 - [x] Move from MathJax to KaTeX
-- [] English version
+- [ ] add GitHub link to page
+- [ ] English version
