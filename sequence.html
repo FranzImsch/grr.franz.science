@@ -22,7 +22,7 @@
 
     <title>Zahlenfolgenrechner</title>
 
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>
         MathJax = {
@@ -39,6 +39,31 @@
                 displayIndent: '0'             // default for indentshift when set to 'auto'
             }
         };
+    </script> -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css"
+        integrity="sha384-zTROYFVGOfTw7JV7KUu8udsvW2fx4lWOsCEDqhBreBwlHI4ioVRtmIvEThzJHGET" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js"
+        integrity="sha384-GxNFqL3r9uRJQhR+47eDxuPoNE7yLftQM8LcxzgS4HT73tp970WS/wV5p8UzCOmb"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/contrib/auto-render.min.js"
+        integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl"
+        crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(document.body, {
+                // customised options
+                // • auto-render specific keys, e.g.:
+                delimiters: [
+                    { left: '$$', right: '$$', display: true },
+                    { left: '$', right: '$', display: false },
+                    { left: '\\(', right: '\\)', display: false },
+                    { left: '\\[', right: '\\]', display: true }
+                ],
+                // • rendering keys, e.g.:
+                throwOnError: false
+            });
+        });
     </script>
 
 </head>
@@ -63,18 +88,17 @@
             <div class="input-row">
                 <div class="inputbox">
                     <label for="n">\(n =\) </label>
-                    <input type="number" onfocus="this.select()" id="n" inputmode="numeric"
-                        pattern="[0-9]*" value="1">
+                    <input type="number" onfocus="this.select()" id="n" inputmode="numeric" pattern="[0-9]*" value="1">
                 </div>
                 <div class="inputexp">
                     <p>\(n=1\) für Goldenen Schnitt,<br>\(n=2\) für Silbernen Schnitt, …</p>
                 </div>
 
-                
+
                 <div class="inputbox">
                     <label for="a-base">\(a_{0} =\) </label>
-                    <input type="number" onfocus="this.select()" id="a-base" inputmode="numeric"
-                        pattern="[0-9]*" value="1">
+                    <input type="number" onfocus="this.select()" id="a-base" inputmode="numeric" pattern="[0-9]*"
+                        value="1">
                 </div>
                 <div class="inputexp">
                     <p>\(a_{0}\) ist die Grundlänge, zu der passende Zahlenfolgen gefunden werden.</p>
@@ -87,95 +111,106 @@
             </div>
             <div class="table">
                 <table>
-                    <thead  style="font-weight: bold;">
-                      <tr>
-                        <th class="tablehead">\(z\)</th>
-                        <th class="tablehead">Approximation</th>
-                        <!-- <th class="tablehead">Ergebnis</th> -->
-                      </tr>
+                    <thead style="font-weight: bold;">
+                        <tr>
+                            <th class="tablehead">\(z\)</th>
+                            <th class="tablehead">Approximation</th>
+                            <!-- <th class="tablehead">Ergebnis</th> -->
+                        </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>-2</td>
-                        <td id="minus2-approx">1</td>
-                        <!-- <td id="minus2-result">1</td> -->
-                      </tr>
-                      <tr>
-                        <td>-1</td>
-                        <td id="minus1-approx">1</td>
-                        <!-- <td id="minus1-result">1</td> -->
-                      </tr>
-                      <tr>
-                        <td>0</td>
-                        <td id="zero-approx">1</td>
-                        <!-- <td id="zero-result">1</td> -->
-                      </tr>
-                      <tr>
-                        <td>1</td>
-                        <td id="one-approx">1</td>
-                        <!-- <td id="one-result">1</td> -->
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td id="two-approx">1</td>
-                        <!-- <td id="two-result">1</td> -->
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td id="tre-approx">1</td>
-                        <!-- <td id="tre-result">1</td> -->
-                      </tr>
-                      <tr><td></td><td></td></tr>
-                      <tr>
-                        <td><input style="width: 50px;" type="number" id="in" inputmode="numeric" pattern="[0-9]*" value="4" step="1" onfocus="this.select()"></td>
-                        <td id="in-approx">1</td>
-                        <!-- <td id="in-result">1</td> -->
-                      </tr>
-                      <tr>
-                        <td id="io-num"></td>
-                        <td id="io-approx">1</td>
-                        <!-- <td id="io-result">1</td> -->
-                      </tr>
-                      <tr>
-                        <td id="it-num"></td>
-                        <td id="it-approx">1</td>
-                        <!-- <td id="it-result">1</td> -->
-                      </tr>
+                        <tr>
+                            <td>-2</td>
+                            <td id="minus2-approx">1</td>
+                            <!-- <td id="minus2-result">1</td> -->
+                        </tr>
+                        <tr>
+                            <td>-1</td>
+                            <td id="minus1-approx">1</td>
+                            <!-- <td id="minus1-result">1</td> -->
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td id="zero-approx">1</td>
+                            <!-- <td id="zero-result">1</td> -->
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td id="one-approx">1</td>
+                            <!-- <td id="one-result">1</td> -->
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td id="two-approx">1</td>
+                            <!-- <td id="two-result">1</td> -->
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td id="tre-approx">1</td>
+                            <!-- <td id="tre-result">1</td> -->
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><input style="width: 50px;" type="number" id="in" inputmode="numeric" pattern="[0-9]*"
+                                    value="4" step="1" onfocus="this.select()"></td>
+                            <td id="in-approx">1</td>
+                            <!-- <td id="in-result">1</td> -->
+                        </tr>
+                        <tr>
+                            <td id="io-num"></td>
+                            <td id="io-approx">1</td>
+                            <!-- <td id="io-result">1</td> -->
+                        </tr>
+                        <tr>
+                            <td id="it-num"></td>
+                            <td id="it-approx">1</td>
+                            <!-- <td id="it-result">1</td> -->
+                        </tr>
                     </tbody>
-                  </table>
+                </table>
             </div>
 
             <div class="foot-row">
-            <div class="precision">
-                <label for="precision">Nachkommastellen:</label>
-                <input style="align-self: center;" type="number" id="precision" min="0" max="18" step="1" inputmode="numeric" pattern="[0-9]*" onfocus="this.select()">
-            </div>
-            <div>
-                <a href="./">Proportionsrechner</a>
-            </div>
+                <div class="precision">
+                    <label for="precision">Nachkommastellen:</label>
+                    <input style="align-self: center;" type="number" id="precision" min="0" max="18" step="1"
+                        inputmode="numeric" pattern="[0-9]*" onfocus="this.select()">
+                </div>
+                <div>
+                    <a href="./">Proportionsrechner</a>
+                </div>
             </div>
         </div>
-    
+
         <div class="math" id="math">
             <p class="title">Mathematischer Hintergrund</p>
             <p style="margin-bottom: 15px;" class="explanation heading">Funktionsweise</p>
             <p class="explanation">
-                Der Rechner konstruiert eine Zahlenfolge, deren Glieder jeweils in einem metallischen Schnitt zu den angrenzenden zwei Gliedern stehen. 
-                Der Zweck dieser Zahlenfolgen ist die Vereinfachung von Designs, in denen verschiedene zueinander harmonische Verhältnisse benötigt werden.
+                Der Rechner konstruiert eine Zahlenfolge, deren Glieder jeweils in einem metallischen Schnitt zu den
+                angrenzenden zwei Gliedern stehen.
+                Der Zweck dieser Zahlenfolgen ist die Vereinfachung von Designs, in denen verschiedene zueinander
+                harmonische Verhältnisse benötigt werden.
                 Die Zahlenfolgen basieren auf dieser Gleichung:
             </p>
-            <p class="explanation center">\(a_{z}:=(\frac{n+\sqrt{n^{2}+4}}{2})^{z} * a_{0}\) für alle \(z\in\mathbb{Z}\).</p>
+            <p class="explanation center">\(a_{z}:=(\frac{n+\sqrt{n^{2}+4}}{2})^{z} * a_{0}\) für alle
+                \(z\in\mathbb{Z}\).</p>
             <p class="explanation">
-                Dabei ist \(a_{0}\) eine Grundlänge, zu der die Zahlenfolge konstruiert wird. Mit \(n\) wird der metallische Schnitt definiert, wobei \(n=1\) der 
-                Goldene Schnitt ist, \(n=2\) der Silberne Schnitt, usw. Nähere Informationen hierzu sind auf der Seite des <a href="./">Proportionsrechners</a> zu finden.
+                Dabei ist \(a_{0}\) eine Grundlänge, zu der die Zahlenfolge konstruiert wird. Mit \(n\) wird der
+                metallische Schnitt definiert, wobei \(n=1\) der
+                Goldene Schnitt ist, \(n=2\) der Silberne Schnitt, usw. Nähere Informationen hierzu sind auf der Seite
+                des <a href="./">Proportionsrechners</a> zu finden.
                 Für den Goldenen Schnitt lässt sich das allgemeine Glied dementsprechend so ausdrücken:
             </p>
-            <p class="explanation center">\(a_{z}:=(\frac{1+\sqrt{5}}{2})^{z} * a_{0}\) bzw. \(a_{z}:= \Phi^{z} * a_{0}\) mit \(z\in\mathbb{Z}\).</p>
-            
+            <p class="explanation center">\(a_{z}:=(\frac{1+\sqrt{5}}{2})^{z} * a_{0}\) bzw. \(a_{z}:= \Phi^{z} *
+                a_{0}\) mit \(z\in\mathbb{Z}\).</p>
+
         </div>
 
 
-        
+
     </div>
 
     <script>
@@ -193,7 +228,7 @@
 
             const zeroaEl = document.getElementById('zero-approx');
             // const zerorEl = document.getElementById('zero-result');
-            
+
             const oneaEl = document.getElementById('one-approx');
             // const onerEl = document.getElementById('one-result');
 
@@ -203,20 +238,20 @@
             const threeaEl = document.getElementById('tre-approx');
             // const threerEl = document.getElementById('tre-result');
 
-            const inEl  = document.getElementById('in');
+            const inEl = document.getElementById('in');
             const inaEl = document.getElementById('in-approx');
             // const inrEl = document.getElementById('in-result');
 
             const inp1aEl = document.getElementById('io-approx');
             // const inp1rEl = document.getElementById('io-result');
-            const ip1El   = document.getElementById('io-num');
+            const ip1El = document.getElementById('io-num');
 
             const inp2aEl = document.getElementById('it-approx');
             // const inp2rEl = document.getElementById('it-result');
-            const ip2El   = document.getElementById('it-num');
+            const ip2El = document.getElementById('it-num');
 
-            
-            
+
+
 
             let m2approx, m1approx, zeroapprox,
                 oneapprox, twoapprox, threeapprox,
@@ -242,7 +277,7 @@
                 ip1El.innerHTML = ip1val.toFixed(0);
                 ip2El.innerHTML = ip2val.toFixed(0);
             }
-            
+
             function calc(e) {
                 m2approx = Math.pow(((Number(nInputEl.value) + Math.sqrt(4 + Math.pow(Number(nInputEl.value), 2))) / 2), (-2)) * aInputEl.value;
                 m1approx = Math.pow(((Number(nInputEl.value) + Math.sqrt(4 + Math.pow(Number(nInputEl.value), 2))) / 2), (-1)) * aInputEl.value;
@@ -256,10 +291,10 @@
                 inp2approx = Math.pow(((Number(nInputEl.value) + Math.sqrt(4 + Math.pow(Number(nInputEl.value), 2))) / 2), (Number(inEl.value) + 2)) * aInputEl.value;
                 ip1val = Number(inEl.value) + 1;
                 ip2val = Number(inEl.value) + 2;
-                
+
                 update('sum');
             }
-            
+
             function calcPrecision(e) {
                 precision = parseInt(e.target.value);
                 update();
